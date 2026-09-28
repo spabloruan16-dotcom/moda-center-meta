@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live e Vídeos - Moda Center</title>
+    <link rel="stylesheet" href="../css/cliente.css">
+    <link rel="stylesheet" href="../css/live_videos.css">
+    <link rel="stylesheet" href="../../CSS-GLOBAL/assistant.css">
+</head>
+<body>
+    <main class="client-app">
+        <header class="client-header">
+            <div>
+                <p class="eyebrow">MODA CENTER</p>
+                <h1>Live e Vídeos</h1>
+                <p id="clientGreeting">Acompanhe as transmissões e vídeos das lojas</p>
+            </div>
+            <div class="client-header-actions">
+                <button id="clientLogout" class="logout-button" type="button">Sair</button>
+            </div>
+        </header>
+
+        <section class="client-content" aria-labelledby="liveVideosTitle">
+            <div class="lv-tabs" role="tablist" aria-label="Tipo de conteúdo">
+                <button type="button" id="tabTudo" class="lv-tab ativa" role="tab" aria-selected="true">✨ Tudo</button>
+                <button type="button" id="tabLives" class="lv-tab" role="tab" aria-selected="false">🔴 Ao vivo</button>
+                <button type="button" id="tabVideos" class="lv-tab" role="tab" aria-selected="false">🎬 Publicações</button>
+            </div>
+
+            <div class="lv-filters" aria-label="Filtros de conteúdo">
+                <label class="lv-search">
+                    <span>🔎</span>
+                    <input id="liveVideosSearch" type="search" placeholder="Pesquisar lives, publicações ou lojas..." autocomplete="off">
+                </label>
+                <label class="lv-store-filter">
+                    <span>🏪 Loja</span>
+                    <select id="liveVideosStoreFilter">
+                        <option value="">Todas as lojas</option>
+                    </select>
+                </label>
+                <button type="button" id="clearLiveVideosFilters" class="lv-clear-filter">Limpar filtros</button>
+            </div>
+
+            <p id="liveVideosNote" class="client-note" role="status"></p>
+
+            <div id="livesGrid" class="lv-grid"></div>
+            <div id="videosGrid" class="lv-grid" hidden></div>
+        </section>
+
+        <!-- MODAL: ASSISTIR LIVE -->
+        <div id="liveWatchModal" class="lv-watch-modal" hidden>
+            <section class="lv-watch-dialog" role="dialog" aria-modal="true" aria-labelledby="liveWatchTitle">
+                <button id="closeLiveWatch" class="cart-close" type="button" aria-label="Fechar">&times;</button>
+                <div class="lv-watch-video-wrap">
+                    <video id="liveWatchVideo" autoplay playsinline controls></video>
+                    <div id="liveWatchStatus" class="lv-watch-status">Conectando à transmissão...</div>
+                    <button id="liveWatchUnmute" class="lv-watch-unmute" type="button" hidden>🔊 Ativar som</button>
+                </div>
+                <div class="lv-watch-info">
+                    <span class="lv-badge-live">🔴 AO VIVO</span>
+                    <h2 id="liveWatchTitle">Live</h2>
+                    <p id="liveWatchStore"></p>
+                    <p id="liveWatchDescription"></p>
+                    <div class="lv-live-actions"><button id="liveParticipationBtn" type="button">🎥 Pedir para participar</button></div>
+                    <div class="lv-social-panel"><h3>💬 Chat ao vivo</h3><div id="liveChatList" class="lv-chat-list"></div><div class="lv-chat-compose"><input id="liveChatInput" maxlength="500" placeholder="Escreva um comentário..."><button id="liveChatSend" type="button">Enviar</button></div></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- MODAL: ASSISTIR VÍDEO -->
+        <div id="videoWatchModal" class="lv-watch-modal" hidden>
+            <section class="lv-watch-dialog" role="dialog" aria-modal="true" aria-labelledby="videoWatchTitle">
+                <button id="closeVideoWatch" class="cart-close" type="button" aria-label="Fechar">&times;</button>
+                <div class="lv-watch-video-wrap">
+                    <video id="videoWatchVideo" controls playsinline></video>
+                </div>
+                <div class="lv-watch-info">
+                    <h2 id="videoWatchTitle">Vídeo</h2>
+                    <p id="videoWatchStore"></p>
+                    <p id="videoWatchDescription"></p>
+                    <div class="lv-publication-actions"><button id="videoLikeBtn" type="button">❤️ Curtir</button><button id="videoShareBtn" type="button">↗ Compartilhar</button></div>
+                    <div class="lv-social-panel"><h3>💬 Comentários</h3><div id="videoCommentsList" class="lv-chat-list"></div><div class="lv-chat-compose"><input id="videoCommentInput" maxlength="500" placeholder="Escreva um comentário..."><button id="videoCommentSend" type="button">Comentar</button></div></div>
+                </div>
+            </section>
+        </div>
+
+        <nav class="client-bottom-navigation" aria-label="Navegação do cliente">
+            <a class="client-nav-item" href="cliente.html" aria-label="Abrir catálogo"><span>🛍</span><strong>Catálogo</strong></a>
+            <a class="client-nav-item" href="minhas-compras.html" aria-label="Abrir minhas compras"><span>📦</span><strong>Minhas compras</strong></a>
+            <a class="client-nav-item ativa" href="live_videos.html" aria-label="Abrir Live e Vídeos"><span>🔴</span><strong>Live/Vídeos</strong></a>
+            <a id="clientChatButton" class="client-nav-item" href="../../Comerciante/pages/chat_comerciante.html" aria-label="Abrir conversas"><span>💬</span><strong>Conversas</strong><b id="clientChatCount">0</b></a>
+            <a class="client-nav-item" href="perfil_cliente.html" aria-label="Abrir perfil"><span>👤</span><strong>Perfil</strong></a>
+        </nav>
+    </main>
+    <script src="../js/live_videos.js"></script>
+    <script src="../../JAVASCRIPT-GLOBAL/chat-badge.js"></script>
+    <script src="../../JAVASCRIPT-GLOBAL/assistant.js"></script>
+</body>
+</html>

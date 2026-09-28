@@ -1,0 +1,324 @@
+/* Container e Botão do Robô.
+   Sempre começa no canto superior esquerdo; depois o usuário pode arrastar
+   o robô e deixá-lo onde quiser (o JS grava left/top em px ao arrastar). */
+#assistant-container {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  left: max(14px, env(safe-area-inset-left));
+  width: 45px;
+  height: 45px;
+  z-index: 9999;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+#assistant-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: linear-gradient(135deg, #7a12e1, #520ca8);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+#assistant-container.dragging #assistant-avatar {
+  cursor: grabbing;
+  transform: scale(1.12);
+  transition: none;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+#assistant-avatar:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Modal / Box da FAQ Inteligente */
+#assistant-box {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: min(320px, calc(100vw - 16px));
+  max-height: 480px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#assistant-box.hidden {
+  display: none;
+}
+
+/* Cabeçalho do FAQ */
+.assistant-header {
+  background: linear-gradient(90deg, #7a12e1, #520ca8);
+  color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.assistant-header button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.assistant-header button:hover {
+  opacity: 1;
+}
+
+/* Corpo e Conteúdo Interno da FAQ */
+.assistant-body {
+  padding: 12px;
+  overflow-y: auto;
+  min-height: 0;
+  max-height: 380px;
+  color: #333333;
+  font-size: 14px;
+}
+
+/* Campo de Busca */
+.assistant-search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* Abas (Cliente / Comerciante) */
+.assistant-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #7a12e1;
+  background: #fff;
+  color: #7a12e1;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #7a12e1;
+  color: #fff;
+}
+
+/* Accordion de Perguntas e Respostas */
+.faq-item {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: #f8f9fa;
+  border: none;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-answer {
+  display: none;
+  padding: 10px 12px;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.4;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+/* Modal do Tutorial Interativo */
+.tutorial-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.tutorial-card {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 400px;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.assistant-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.tutorial-body p {
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  line-height: 1.5;
+  margin: 16px 0;
+}
+
+.tutorial-steps-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ddd;
+  transition: background-color 0.3s;
+}
+
+.step-dot.active {
+  background-color: #5520b8;
+  width: 20px;
+  border-radius: 5px;
+}
+
+.tutorial-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.btn-primary {
+  background-color: #5520b8;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #777;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+/* Botão para reabrir o tutorial dentro do Assistant */
+.assistant-tutorial-btn {
+  width: 100%;
+  border: 1px solid #e2d8f4;
+  background: #f8f5fd;
+  color: #5520b8;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.assistant-tutorial-btn:hover {
+  background: #eee7fa;
+  transform: translateY(-1px);
+}
+
+.tutorial-modal.hidden {
+  display: none !important;
+}
+
+.tutorial-card h2 {
+  margin: 0;
+  color: #252525;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.tutorial-card {
+  position: relative;
+}
+
+.tutorial-footer .tutorial-prev-btn {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #5520b8;
+  padding: 10px 14px;
+}
+
+.tutorial-footer .tutorial-prev-btn:hover {
+  background: #f5f2fa;
+}
+
+@media (max-width: 480px) {
+  #assistant-box {
+    width: min(92vw, 340px);
+    max-height: 75vh;
+  }
+
+  .tutorial-card {
+    width: calc(100% - 32px);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .tutorial-footer {
+    flex-wrap: wrap;
+  }
+
+  .tutorial-footer .btn-primary {
+    min-width: 120px;
+  }
+}

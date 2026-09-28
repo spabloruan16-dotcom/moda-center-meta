@@ -1,0 +1,70 @@
+.lv-tabs { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.lv-tab { min-height: 40px; padding: 0 16px; border: 1px solid var(--line); border-radius: 10px; color: var(--muted); background: #fff; font-weight: 700; font-size: 13px; }
+.lv-tab.ativa { color: #fff; background: var(--purple); border-color: var(--purple); }
+
+.lv-filters { display: grid; grid-template-columns: minmax(220px, 1fr) minmax(190px, .45fr) auto; gap: 10px; margin-bottom: 18px; align-items: center; }
+.lv-search, .lv-store-filter { display: flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 12px; border: 1px solid var(--line); border-radius: 11px; background: #fff; color: var(--muted); }
+.lv-search span { font-size: 14px; }
+.lv-search input, .lv-store-filter select { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font: inherit; font-size: 12px; }
+.lv-store-filter span { flex: 0 0 auto; font-size: 11px; font-weight: 800; }
+.lv-clear-filter { min-height: 42px; padding: 0 13px; border: 1px solid var(--purple); border-radius: 11px; color: var(--purple); background: #fff; font-size: 11px; font-weight: 800; cursor: pointer; }
+.lv-clear-filter:hover { background: #f6f1ff; }
+.lv-watch-unmute { position: absolute; z-index: 4; left: 50%; bottom: 18px; transform: translateX(-50%); min-height: 42px; padding: 0 15px; border: 0; border-radius: 999px; color: #fff; background: rgba(89,38,201,.95); box-shadow: 0 8px 24px rgba(0,0,0,.3); font-size: 12px; font-weight: 800; cursor: pointer; }
+
+.lv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.lv-grid[hidden] { display: none; }
+
+.lv-card { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: 0 8px 24px rgba(43, 26, 87, .06); cursor: pointer; text-align: left; padding: 0; }
+.lv-card:focus-visible { outline: 3px solid rgba(89,38,201,.3); outline-offset: 2px; }
+.lv-card-thumb { position: relative; width: 100%; aspect-ratio: 4 / 3; background: linear-gradient(135deg, #2c164f, #7c37d8); overflow: hidden; }
+.lv-card-thumb img, .lv-card-thumb video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lv-card-badge { position: absolute; z-index: 2; top: 10px; left: 10px; padding: 5px 9px; border-radius: 7px; color: #fff; font-size: 10px; font-weight: 800; background: #ff3e5b; }
+.lv-card-badge.lv-badge-video { background: #ee4d2d; }
+.lv-card-viewers { position: absolute; z-index: 2; bottom: 10px; right: 10px; padding: 4px 8px; border-radius: 999px; color: #fff; font-size: 10px; font-weight: 700; background: rgba(0,0,0,.5); }
+.lv-card-play { position: absolute; inset: 0; display: grid; place-items: center; font-size: 34px; color: #fff; opacity: .85; }
+.lv-card-body { padding: 14px; }
+.lv-card-body strong { display: block; margin-bottom: 4px; font-size: 15px; }
+.lv-card-body .store-name { margin: 0 0 6px; }
+.lv-card-body p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+.lv-watch-modal { position: fixed; z-index: 40; inset: 0; display: grid; place-items: center; padding: 18px; background: rgba(20,10,40,.75); }
+.lv-watch-modal[hidden] { display: none; }
+.lv-watch-dialog { position: relative; width: min(520px, 100%); max-height: calc(100vh - 36px); overflow-y: auto; border-radius: 18px; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+.lv-watch-dialog .cart-close { position: absolute; z-index: 5; top: 10px; right: 12px; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+.lv-watch-video-wrap { position: relative; width: 100%; aspect-ratio: 9 / 16; max-height: 70vh; background: #000; }
+.lv-watch-video-wrap video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.lv-watch-status { position: absolute; inset: 0; display: grid; place-items: center; padding: 20px; color: #fff; font-size: 13px; text-align: center; background: rgba(0,0,0,.35); }
+.lv-watch-status[hidden] { display: none; }
+.lv-watch-info { padding: 16px 18px 20px; color: #fff; background: #16102b; }
+.lv-watch-info h2 { margin: 6px 0 4px; font: 700 18px "Space Grotesk", sans-serif; }
+.lv-watch-info p { margin: 0 0 4px; color: #cfc6e6; font-size: 13px; }
+.lv-badge-live { display: inline-block; padding: 4px 9px; border-radius: 999px; color: #fff; background: #ff3e5b; font-size: 10px; font-weight: 800; letter-spacing: .04em; }
+
+@media (max-width: 720px) {
+    .lv-filters { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+    .lv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .lv-card-body { padding: 10px; }
+    .lv-card-body strong { font-size: 13px; }
+}
+
+
+.lv-social-panel { margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.12); }
+.lv-social-panel h3 { margin: 0 0 10px; font-size: 14px; }
+.lv-chat-list { max-height: 210px; overflow-y: auto; display: grid; gap: 7px; padding: 4px 0; }
+.lv-chat-msg, .lv-comment { display: grid; gap: 2px; padding: 8px 10px; border-radius: 10px; background: rgba(255,255,255,.07); font-size: 12px; }
+.lv-chat-msg strong, .lv-comment strong { font-size: 11px; color: #fff; }
+.lv-chat-msg span, .lv-comment span { color: #d9d2e8; line-height: 1.4; word-break: break-word; }
+.lv-chat-compose { display:flex; gap:8px; margin-top:9px; }
+.lv-chat-compose input { min-width:0; flex:1; min-height:40px; border:1px solid rgba(255,255,255,.18); border-radius:10px; padding:0 10px; background:rgba(255,255,255,.08); color:#fff; outline:none; }
+.lv-chat-compose button, .lv-live-actions button, .lv-publication-actions button { min-height:40px; border:0; border-radius:10px; padding:0 12px; font-weight:800; cursor:pointer; }
+.lv-chat-compose button { background:#fff; color:#351568; }
+.lv-live-actions { margin:12px 0; }
+.lv-live-actions button { background:#6f39d7; color:#fff; }
+.lv-live-actions button:disabled { opacity:.65; cursor:default; }
+.lv-publication-actions { display:flex; gap:8px; margin:12px 0; flex-wrap:wrap; }
+.lv-publication-actions button { background:#fff; color:#351568; }
+.lv-empty-social { color:#bfb5d0; font-size:12px; padding:10px 0; }
+.lv-card-social { display:flex; gap:10px; margin-top:10px; color:#6d5b86; font-size:11px; font-weight:700; }

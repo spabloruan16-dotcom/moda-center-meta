@@ -1,0 +1,114 @@
+.bottom-navigation,
+.client-bottom-navigation {
+    position: fixed;
+    z-index: 20;
+    right: 1px;
+    bottom: 0;
+    left: 1px;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 5px;
+    min-height: 78px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line, #ebe7f3);
+    background: #fff;
+    box-shadow: 0 -8px 28px rgba(43, 26, 87, .08);
+}
+
+.nav-item,
+.client-nav-item {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-width: 105px;
+    border: 0;
+    border-radius: 10px;
+    color: var(--muted, #7e7890);
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-item.active,
+.nav-item:hover,
+.nav-item:focus-visible,
+.client-nav-item.active,
+.client-nav-item:hover,
+.client-nav-item:focus-visible {
+    color: var(--purple, #5926c9);
+    background: #f8f5ff;
+}
+
+.nav-icon,
+.client-nav-item span {
+    font-size: 19px;
+    line-height: 22px;
+}
+
+.nav-label,
+.client-nav-item strong {
+    font-size: 10px;
+}
+
+.navigation-space {
+    width: 46px;
+    flex: 0 0 46px;
+}
+
+.nav-item .chat-unread-badge,
+.client-nav-item .chat-unread-badge {
+    position: absolute;
+    top: 4px;
+    right: calc(50% - 42px);
+    display: grid;
+    place-items: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border: 0;
+    border-radius: 999px;
+    color: #fff;
+    background: #e0392b;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+.client-nav-item b {
+    position: absolute;
+    top: 4px;
+    right: calc(50% - 42px);
+    display: grid;
+    place-items: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 999px;
+    color: #fff;
+    background: var(--orange, #ff7a18);
+    font-size: 9px;
+}
+
+@media (max-width: 520px) {
+    .bottom-navigation,
+    .client-bottom-navigation {
+        gap: 2px;
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .nav-item,
+    .client-nav-item {
+        min-width: calc(25vw - 12px);
+    }
+
+    .navigation-space {
+        width: 16px;
+        flex: 0 0 16px;
+    }
+
+    .nav-label,
+    .client-nav-item strong {
+        font-size: 9px;
+    }
+}
