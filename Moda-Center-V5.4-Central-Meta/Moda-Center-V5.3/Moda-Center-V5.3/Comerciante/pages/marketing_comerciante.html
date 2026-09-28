@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#5720B7">
+    <title>Central de Marketing - Moda Center</title>
+    <link rel="stylesheet" href="../css/marketing_comerciante.css">
+    <link rel="stylesheet" href="../../CSS-GLOBAL/navigation.css">
+    <link rel="stylesheet" href="../../CSS-GLOBAL/assistant.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         APP
+         Tela "Central de Marketing", acessada pelo item
+         "Marketing" do menu inferior das telas do comerciante.
+         Reaproveita o mesmo cabeçalho roxo e o
+         mesmo menu inferior das outras telas do comerciante.
+    ====================================================== -->
+
+    <main class="app">
+
+        <header class="header">
+
+            <div class="header-top">
+
+                <!-- Logo -->
+                <div class="logo-area">
+                    <img src="../../assets/images/logo.png" alt="Moda Center Santa Cruz" class="logo">
+                </div>
+
+                <!-- Notificação -->
+                <button class="notification-button" aria-label="Notificações">
+                    <img src="../../assets/images/notificacao.png" alt="" class="notification-icon">
+                </button>
+
+            </div>
+
+            <!-- Título da tela -->
+            <div class="marketing-hero">
+                <h1>Central de Marketing</h1>
+                <p>Ferramentas para impulsionar suas vendas</p>
+            </div>
+
+        </header>
+
+        <!-- =================================================
+             FERRAMENTAS DE MARKETING
+             Cada botão é uma ferramenta. Nenhuma delas tem uma
+             tela própria implementada ainda: o clique só dá um
+             retorno visual e um aviso de "em desenvolvimento",
+             igual ao padrão já usado em outras partes do site.
+        ================================================== -->
+
+        <section class="content">
+
+            <div class="marketing-grid">
+
+                <button class="marketing-card card-purple" type="button">
+                    <span class="card-icon">🤝</span>
+                    <span>
+                        <strong>Affiliate Marketing Solution</strong>
+                        <small>Encontre afiliados e impulsione suas vendas.</small>
+                    </span>
+                    <b>›</b>
+                </button>
+
+                <button class="marketing-card card-red" id="modacenterLiveVideoCard" type="button">
+                    <span class="card-icon">▶</span>
+                    <span>
+                        <strong>Moda Center Live e Vídeo</strong>
+                        <small>Transmita ao vivo e conecte-se com seus clientes.</small>
+                    </span>
+                    <b>›</b>
+                </button>
+
+                <button class="marketing-card card-orange" id="promotionsCard" type="button">
+                    <span class="card-icon">%</span>
+                    <span>
+                        <strong>Promoções</strong>
+                        <small>Crie e gerencie promoções especiais para sua loja.</small>
+                    </span>
+                    <b>›</b>
+                </button>
+
+                <button class="marketing-card card-green" id="cuponsCard" type="button">
+                    <span class="card-icon">🎫</span>
+                    <span>
+                        <strong>Meus Cupons de Comerciante</strong>
+                        <small>Gerencie cupons e ofertas exclusivas para seus clientes.</small>
+                    </span>
+                    <b>›</b>
+                </button>
+
+                <button class="marketing-card card-blue" id="flashOffersCard" type="button">
+                    <span class="card-icon">⚡</span>
+                    <span>
+                        <strong>Ofertas e Relâmpago da Loja</strong>
+                        <small>Crie ofertas relâmpago e aumente suas vendas.</small>
+                    </span>
+                    <b>›</b>
+                </button>
+<!-- ----------(incio) modificado por Marcos Substituição de Minha Transmissão por Chat por Meus Destaques--------- -->
+                <button class="marketing-card card-orange" id="highlightsCard" type="button">
+                    <span class="card-icon">⭐</span>
+                    <span>
+                        <strong>Meus Destaques</strong>
+                        <small>Escolha os produtos que você quer colocar em destaque.</small>
+                    </span>
+                    <b>›</b>
+                </button>
+<!-- ----------(final) modificado por Marcos Substituição de Minha Transmissão por Chat por Meus Destaques--------- -->
+
+                <button class="marketing-card card-green" id="fidelidadeCard" type="button">
+                    <span class="card-icon">🎁</span>
+                    <span>
+                        <strong>Cartão de Fidelidade</strong>
+                        <small>Crie prêmios e sorteios para engajar seus seguidores.</small>
+                    </span>
+                    <b>›</b>
+                </button>
+                
+                <div id="premioPopup" class="premio-popup" hidden>
+                    <div class="popup">
+                        <button id="fecharPremio" class="fechar-premio" type="button">×</button>
+                        <h2>CARTÃO FIDELIDADE</h2>
+                        <p class="premio-descricao">Crie um Cartão de Fidelidade para seus Seguidores.</p>
+
+                        <label>Nome do Cartão de Fidelidade</label>
+                        <input id="nomeCartao" type="text" placeholder="Ex.: Cartão de Fidelidade Six Seven">
+
+                        <label>Meta de pontos</label>
+                        <input id="metaPontos" type="number" min="1" step="1" placeholder="Ex.: 10">
+
+                        <label>Quantidade de pontos por unidade</label>
+                        <input id="pontosPorItem" type="number" min="1" step="1" value="1" placeholder="Ex.: 1">
+                        <small class="fidelidade-help">Ex.: se colocar 2, cada unidade comprada vale 2 pontos.</small>
+
+                        <label>Quais produtos geram pontos?</label>
+                        <select id="escopoFidelidade">
+                            <option value="all">Todos os produtos da loja</option>
+                            <option value="category">Uma categoria</option>
+                            <option value="product">Produtos específicos</option>
+                        </select>
+
+                        <div id="categoriaFidelidadeField" hidden>
+                            <label>Categoria</label>
+                            <select id="categoriaFidelidade"></select>
+                        </div>
+
+                        <div id="produtosFidelidadeField" hidden>
+                            <label>Produtos</label>
+                            <div id="produtosFidelidade" class="fidelidade-products-list"></div>
+                        </div>
+
+                        <label>Recompensa</label>
+                        <input id="recompensa" type="text" placeholder="Ex.: Cupom de R$29 de desconto">
+
+                        <label>Valor do desconto (R$)</label>
+                        <input id="descontoValor" type="number" step="0.01" min="0" placeholder="Ex.: 29">
+
+                        <label>Validade do Cartão</label>
+                        <input id="validade" type="date">
+
+                        <button id="criar">Criar Cartão Fidelidade</button>
+                        <button id="verCartoesBtn" type="button" class="ver-cartoes-btn">Ver Cartões Criados</button>
+                        <div id="mensagem"></div>
+                    </div>
+                </div>
+
+                <div id="cartoesListPopup" class="premio-popup" hidden>
+                    <div class="popup">
+                        <button id="fecharListaCartoes" class="fechar-premio" type="button">×</button>
+                        <h2>MEUS CARTÕES DE FIDELIDADE</h2>
+                        <p class="premio-descricao">Gerencie os cartões criados para sua loja.</p>
+                        <div id="cartoesFidelidadeLista" class="cartoes-lista"></div>
+                    </div>
+                </div>
+
+                <button class="marketing-card card-pink" id="bulkOffersCard" type="button">
+                    <span class="card-icon">🛍</span>
+                    <span>
+                        <strong>Leve Mais por Menos</strong>
+                        <small>Crie ofertas progressivas e aumente o ticket médio dos pedidos.</small>
+                    </span>
+                    <b>›</b>
+                </button>
+
+            </div>
+
+            <section class="campaign-panel" aria-live="polite">
+                <div class="campaign-heading">
+                    <div>
+                        <p>ATIVAS NA SUA LOJA</p>
+                        <h2>Campanhas que estão rodando</h2>
+                    </div><span id="campaignCount">0</span>
+                </div>
+                <div id="campaignList" class="campaign-list">
+                    <p class="campaign-empty">Nenhuma campanha criada ainda.</p>
+                </div>
+            </section>
+
+            <!-- Banner de dicas -->
+            <div class="marketing-banner">
+                <span class="banner-icon" aria-hidden="true">🏪</span>
+                <div class="banner-text">
+                    <strong>Dicas para vender mais</strong>
+                    <small>Acesse conteúdos, tutoriais e estratégias exclusivas para lojistas Moda Center.</small>
+                </div>
+                <button class="banner-button" type="button">Acessar agora</button>
+            </div>
+
+        </section>
+
+        <!-- Mensagens curtas de retorno (ex.: "recurso em desenvolvimento"). -->
+        <div class="toast" id="toast"></div>
+
+        <div class="campaign-backdrop" id="campaignBackdrop" hidden>
+            <section class="campaign-dialog" role="dialog" aria-modal="true" aria-labelledby="campaignTitle">
+                <div class="campaign-dialog-heading">
+                    <div>
+                        <p id="campaignEyebrow">NOVA CAMPANHA</p>
+                        <h2 id="campaignTitle">Criar promoção</h2>
+                    </div><button id="closeCampaign" type="button" aria-label="Fechar">×</button>
+                </div>
+                <form id="campaignForm">
+                    <label>Nome da campanha<input id="campaignName" type="text" required maxlength="60"
+                            placeholder="Ex.: Semana do jeans"></label>
+                    <div id="couponFields" hidden>
+                        <label>Código do cupom<input id="couponCode" type="text" maxlength="20"
+                                placeholder="Ex.: MODA10" autocomplete="off"></label>
+                        <div class="coupon-code-helper">O cliente usará este código para ativar o desconto.</div>
+                    </div>
+                    <label>Desconto (%)<input id="campaignDiscount" type="number" min="1" max="90" required></label>
+                    <label id="campaignScopeField">Aplicar em<select id="campaignScope">
+                            <option value="all">Todos os produtos</option>
+                            <option value="category">Uma categoria</option>
+                            <option value="product">Um produto</option>
+                        </select></label>
+                    <label id="campaignCategoryField" hidden>Categoria<select id="campaignCategory"></select></label>
+                    <label id="campaignProductField" hidden>Produto<select id="campaignProduct"></select></label>
+                    <div id="couponValidity" hidden>
+                        <label>Início da validade<input id="couponStart" type="datetime-local"></label>
+                        <label>Fim da validade<input id="couponEnd" type="datetime-local"></label>
+                        <label>Limite de usos<input id="couponLimit" type="number" min="1" placeholder="Ex.: 100"></label>
+                    </div>
+                    <div id="flashFields" hidden>
+                        <label>Começa em<input id="flashStart" type="datetime-local"></label>
+                        <label>Termina em<input id="flashEnd" type="datetime-local"></label>
+                        <label class="check-field"><input id="flashUntilStock" type="checkbox"> Encerrar quando o
+                            estoque acabar</label>
+                    </div>
+                    <div id="bulkFields" hidden>
+                        <div class="bulk-products-field">
+                            <span class="field-title">Produtos participantes</span>
+                            <div id="bulkProducts" class="bulk-products-list"></div>
+                        </div>
+                        <label>Quantidade mínima de unidades<input id="bulkMinUnits" type="number" min="2" step="1" value="2"></label>
+                    </div>
+                    <p id="campaignNote" class="campaign-note" role="status"></p>
+                    <button class="campaign-save" type="submit">Ativar campanha</button>
+                </form>
+            </section>
+        </div>
+<!-- ----------(incio) modificado por Marcos Seletor personalizado de produto com pesquisa e preview--------- -->
+        <div class="campaign-backdrop" id="highlightsBackdrop" hidden>
+            <section class="campaign-dialog" role="dialog" aria-modal="true" aria-labelledby="highlightsTitle">
+                <div class="campaign-dialog-heading"><div><p>DESTAQUES DA LOJA</p><h2 id="highlightsTitle">Meus destaques</h2></div><button id="closeHighlights" type="button" aria-label="Fechar">×</button></div>
+                <div class="highlights-intro">Escolha os produtos que aparecerão na aba <strong>Meus destaques</strong> da sua loja.</div>
+                <form id="highlightsForm">
+                    <label class="highlight-picker-label">Produto em destaque
+                        <input id="highlightProduct" type="hidden" required>
+                        <button id="highlightPickerButton" class="highlight-picker-button" type="button" aria-haspopup="listbox" aria-expanded="false">
+                            <span class="highlight-picker-thumb"><img id="highlightPickerImage" src="../../assets/images/produtos/sem-foto.svg" alt=""></span>
+                            <span class="highlight-picker-text"><strong id="highlightPickerName">Selecionar produto</strong><small id="highlightPickerMeta">Clique para escolher um produto</small></span>
+                            <span class="highlight-picker-arrow">⌄</span>
+                        </button>
+                        <div id="highlightPickerPanel" class="highlight-picker-panel" hidden>
+                            <div class="highlight-picker-search"><span>⌕</span><input id="highlightSearch" type="search" placeholder="Pesquisar por nome ou categoria" autocomplete="off"></div>
+                            <div id="highlightProductList" class="highlight-product-list" role="listbox" aria-label="Produtos disponíveis"></div>
+                        </div>
+                    </label>
+                    <div id="highlightPreview" class="highlight-preview" aria-live="polite"></div>
+                    <p id="highlightsNote" class="campaign-note" role="status"></p>
+                    <button class="campaign-save highlight-save" type="submit"><span>☆</span> Adicionar aos destaques</button>
+                </form>
+                <div class="saved-highlights-heading"><span>PRODUTOS DESTACADOS</span><strong id="highlightCount">0</strong></div>
+                <div id="savedHighlights" class="saved-highlights"></div>
+            </section>
+        </div>
+
+<!-- ----------(final) modificado por Marcos Seletor personalizado de produto com pesquisa e preview--------- -->       
+
+        <!-- =====================================================
+             BOTÃO FLUTUANTE
+        ====================================================== -->
+
+        <button class="floating-button" aria-label="Adicionar">
+            <span>+</span>
+        </button>
+
+        <!-- =====================================================
+             MENU INFERIOR
+             Mesma estrutura usada nas telas do comerciante, para
+             manter a navegação consistente
+             entre as três telas.
+        ====================================================== -->
+
+        <!-- Menu inferior compartilhado; somente o item Marketing fica ativo nesta tela. -->
+        <nav class="bottom-navigation" aria-label="Navegação do comerciante">
+
+            <a class="nav-item" href="inicio_comerciante.html">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Início</span>
+            </a>
+
+            <a class="nav-item" href="chat_comerciante.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">Chat</span>
+            </a>
+
+            <div class="navigation-space"></div>
+
+            <a class="nav-item active" href="marketing_comerciante.html">
+                <span class="nav-icon">📣</span>
+                <span class="nav-label">Marketing</span>
+            </a>
+
+            <a class="nav-item" href="perfil_comerciante.html">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Perfil</span>
+            </a>
+
+        </nav>
+
+    </main>
+
+    <script src="js/comerciante-guard.js"></script>
+
+    <script src="../js/comerciante-guard.js"></script>
+    <script src="../js/marketing_comerciante.js"></script>
+    <script src="../../JAVASCRIPT-GLOBAL/chat-badge.js"></script>
+
+    <script src="../../JAVASCRIPT-GLOBAL/assistant.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar - Moda Center</title>
+    <link rel="stylesheet" href="../css/cliente.css">
+    <link rel="stylesheet" href="../../CSS-GLOBAL/assistant.css">
+</head>
+<body>
+    <main class="client-app">
+        <header class="client-header">
+            <div>
+                <p class="eyebrow">MODA CENTER</p>
+                <h1>Encontre seu próximo look</h1>
+                <p id="clientGreeting">Produtos das lojas cadastradas</p>
+            </div>
+            <div class="client-header-actions">
+                <button id="clientLogout" class="logout-button" type="button">Sair</button>
+            </div>
+        </header>
+
+        <section class="style-studio" aria-labelledby="styleStudioTitle">
+            <div class="style-studio-copy"><p class="eyebrow">SEU ESTILO, DO SEU JEITO</p><h2 id="styleStudioTitle">Encontre o look perfeito</h2><p>Conte para a gente o que você precisa e descubra combinações com produtos reais do catálogo.</p></div>
+            <div class="style-studio-actions"><button id="lookGeneratorButton" type="button"><span>✦</span> Montar look com IA</button></div>
+        </section>
+
+        <section class="client-content" aria-labelledby="catalogTitle">
+            <div class="catalog-heading">
+                <div>
+                    <p class="eyebrow">CATÁLOGO</p>
+                    <h2 id="catalogTitle">Produtos disponíveis</h2>
+                </div>
+                <input id="catalogSearch" type="search" placeholder="Buscar produto" aria-label="Buscar produto">
+            </div>
+            <p id="clientNote" class="client-note" role="status"></p>
+            <div id="clientProducts" class="client-products"></div>
+        </section>
+ <!-- ----------(incio) modificado por Marcos Perfil da loja: modal de visualização da loja--------- -->
+
+        <div id="storeViewModal" class="store-view-modal" hidden>
+            <section class="store-view-dialog" role="dialog" aria-modal="true" aria-labelledby="storeViewTitle">
+                <button id="closeStoreView" class="cart-close" type="button" aria-label="Fechar loja">&times;</button>
+                <div id="storeViewContent"></div>
+            </section>
+        </div>
+<!-- ----------(final) modificado por Marcos Perfil da loja: modal de visualização da loja--------- -->
+
+
+        <div id="productDetailsModal" class="product-details-modal" hidden>
+            <section class="product-details" role="dialog" aria-modal="true" aria-labelledby="productDetailsTitle">
+                <button id="closeProductDetails" class="cart-close" type="button" aria-label="Fechar detalhes">&times;</button>
+                <div id="productDetailsContent"></div>
+            </section>
+        </div>
+
+        <div id="orderReceiptModal" class="order-receipt-modal" hidden>
+            <section class="order-receipt-dialog" role="dialog" aria-modal="true" aria-labelledby="receiptTitle">
+                <button id="closeReceipt" class="cart-close" type="button" aria-label="Fechar">&times;</button>
+                <p class="eyebrow">PEDIDO CONFIRMADO</p><h2 id="receiptTitle">Seu comprovante está pronto</h2>
+                <p id="receiptSummary" class="receipt-summary"></p>
+                <div class="receipt-actions"><button id="downloadReceipt" type="button">Baixar nota</button><button id="printReceipt" type="button">Imprimir / Salvar PDF</button></div>
+            </section>
+        </div>
+
+        <section id="cartPanel" class="cart-panel" hidden aria-labelledby="cartTitle">
+            <div class="cart-heading">
+                <div>
+                    <p class="eyebrow">SEU PEDIDO</p>
+                    <h2 id="cartTitle">Carrinho</h2>
+                </div>
+                <button id="closeCart" class="cart-close" type="button" aria-label="Fechar carrinho">&times;</button>
+            </div>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="coupon-box">
+                <label for="couponInput">Cupom de desconto</label>
+                <div class="coupon-input-row">
+                    <input id="couponInput" type="text" maxlength="20" placeholder="Digite seu cupom" autocomplete="off">
+                    <button id="applyCouponButton" type="button">Aplicar</button>
+                </div>
+                <p id="couponNote" class="coupon-note" role="status"></p>
+                <button id="removeCouponButton" class="remove-coupon-button" type="button" hidden>Remover cupons</button>
+            </div>
+            <div class="cart-summary">
+                <div class="cart-subtotal-row"><span>Subtotal</span><strong id="cartSubtotal">R$ 0,00</strong></div>
+                <div class="cart-discount-row" id="cartDiscountRow" hidden><span>Desconto</span><strong id="cartDiscount">- R$ 0,00</strong></div>
+            </div>
+            <div class="cart-footer">
+                <strong>Total <span id="cartTotal">R$ 0,00</span></strong>
+                <button id="continueShopping" class="continue-button" type="button">Continuar comprando</button>
+                <button id="checkoutButton" class="checkout-button" type="button">Ir para o carrinho e finalizar compra</button>
+            </div>
+        </section>
+
+        <div id="checkoutModal" class="checkout-modal" hidden>
+            <section class="checkout-dialog" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+                <div class="checkout-heading"><div><p class="eyebrow">ÚLTIMO PASSO</p><h2 id="checkoutTitle">Como você quer receber?</h2></div><button id="closeCheckout" class="cart-close" type="button" aria-label="Fechar">&times;</button></div>
+                <div class="delivery-options" role="radiogroup" aria-label="Modalidade de recebimento">
+                    <label class="delivery-option"><input type="radio" name="fulfillment" value="delivery" checked><span><strong>Receber no meu endereço</strong><small>Informe ou use o endereço salvo no seu perfil.</small></span></label>
+                    <label class="delivery-option"><input type="radio" name="fulfillment" value="pickup"><span><strong>Retirar na loja</strong><small>Busque seu pedido no box da loja dentro do Moda Center.</small></span></label>
+                </div>
+                <div id="deliveryAddressFields" class="address-fields">
+                    <label>Nome de quem recebe<input id="deliveryRecipient" type="text" autocomplete="name"></label>
+                    <label>CEP<input id="deliveryZip" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="00000-000"></label>
+                    <label>Rua e número<input id="deliveryStreet" type="text" autocomplete="street-address"></label>
+                    <div class="address-row"><label>Cidade<input id="deliveryCity" type="text" autocomplete="address-level2"></label><label>Estado<input id="deliveryState" type="text" maxlength="2" autocomplete="address-level1"></label></div>
+                    <label>Complemento (opcional)<input id="deliveryComplement" type="text" autocomplete="address-line2"></label>
+                    <label class="save-address-option"><input id="saveDeliveryAddress" type="checkbox" checked> Salvar este endereço para os próximos pedidos</label>
+                </div>
+                <div id="pickupInfo" class="pickup-info" hidden></div>
+                <p id="checkoutNote" class="checkout-note" role="status"></p>
+                <button id="confirmCheckout" class="confirm-checkout" type="button">Confirmar pedido</button>
+            </section>
+        </div>
+
+        <div id="styleStudioModal" class="style-studio-modal" hidden>
+            <section class="style-studio-dialog" role="dialog" aria-modal="true" aria-labelledby="styleStudioModalTitle">
+                <button id="closeStyleStudio" class="cart-close" type="button" aria-label="Fechar">&times;</button>
+                <p class="eyebrow">STYLIST MODA CENTER</p><h2 id="styleStudioModalTitle">Monte um look para você</h2><p class="style-dialog-note">A recomendação usa os produtos disponíveis no catálogo e aprende com suas preferências salvas.</p>
+                <form id="lookForm" class="look-form">
+                    <label>Para qual ocasião você precisa do look?<input id="lookOccasion" type="text" maxlength="100" required placeholder="Ex.: casamento no fim da tarde"></label>
+                    <label>Como você quer se vestir?<input id="lookStyle" type="text" maxlength="100" required placeholder="Ex.: casual elegante e confortável"></label>
+                    <label>Orçamento máximo<input id="lookBudget" type="number" min="0" step="10" placeholder="Sem limite"></label>
+                    <label>O que você prefere?<input id="lookPreference" type="text" maxlength="80" placeholder="Ex.: tons neutros, jeans, algo leve"></label>
+                    <button class="look-submit" type="submit">Gerar meu look</button>
+                </form>
+                <div id="lookResult" class="look-result" hidden></div>
+            </section>
+        </div>
+
+
+        <nav class="client-bottom-navigation" aria-label="Navegação do cliente">
+            <button id="cartButton" class="client-nav-item" type="button" aria-label="Abrir carrinho"><span>🛒</span><strong>Carrinho</strong><b id="cartCount">0</b></button>
+            <a class="client-nav-item" href="minhas-compras.html" aria-label="Abrir minhas compras"><span>📦</span><strong>Minhas compras</strong></a>
+            <a class="client-nav-item" href="live_videos.html" aria-label="Abrir Live e Vídeos"><span>🔴</span><strong>Live/Vídeos</strong></a>
+            <a id="clientChatButton" class="client-nav-item" href="../../Comerciante/pages/chat_comerciante.html" aria-label="Abrir conversas"><span>💬</span><strong>Conversas</strong><b id="clientChatCount">0</b></a>
+            <a class="client-nav-item" href="perfil_cliente.html" aria-label="Abrir perfil"><span>👤</span><strong>Perfil</strong></a>
+        </nav>
+    </main>
+    <script src="../../JAVASCRIPT-GLOBAL/nota-pedido.js"></script>
+    <script src="../js/cliente.js"></script>
+    <script src="../../JAVASCRIPT-GLOBAL/chat-badge.js"></script>
+    <script src="../../JAVASCRIPT-GLOBAL/assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "products": [],
+  "stores": {},
+  "orders": [],
+  "chats": [],
+  "presence": {},
+  "users": [],
+  "coupons": [],
+  "loyaltyCards": [],
+  "loyaltyPoints": [],
+  "loyaltyRedemptions": [],
+  "videos": [
+    {
+      "id": "a033db7f-f2f1-4596-81c4-5f9fa1ad7ac4",
+      "ownerId": "merchant_teste",
+      "ownerName": "Loja Teste",
+      "title": "Meu Video Teste",
+      "description": "Descricao teste",
+      "url": "/uploads/videos/a033db7f-f2f1-4596-81c4-5f9fa1ad7ac4.mp4",
+      "originalName": "video.mp4",
+      "contentType": "video/mp4",
+      "size": 1400,
+      "createdAt": 1790536854305,
+      "active": true
+    },
+    {
+      "id": "b04169e1-a985-473b-a7d6-0029c8a20fa4",
+      "ownerId": "m1",
+      "ownerName": "Loja",
+      "title": "T",
+      "description": "D",
+      "url": "/uploads/videos/b04169e1-a985-473b-a7d6-0029c8a20fa4.mp4",
+      "originalName": "v.mp4",
+      "contentType": "video/mp4",
+      "size": 200000,
+      "createdAt": 1790611829014,
+      "active": true
+    }
+  ],
+  "multistreamDestinations": {}
+}

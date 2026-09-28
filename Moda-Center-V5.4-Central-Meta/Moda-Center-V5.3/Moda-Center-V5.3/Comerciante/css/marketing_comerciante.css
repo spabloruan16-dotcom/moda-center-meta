@@ -1,0 +1,631 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+
+/* =========================================================
+	CENTRAL DE MARKETING (marketing_comerciante.html)
+   Esta folha de estilo repete de propósito as mesmas variáveis,
+	o mesmo cabeçalho e o mesmo menu inferior das telas do comerciante,
+	para que marketing_comerciante.html funcione sozinha, sem
+   depender de outro arquivo CSS carregado. É o mesmo padrão que
+   o projeto já usa: cada página HTML tem seu próprio CSS completo.
+========================================================= */
+
+:root {
+	--ink: #21183b;
+	--muted: #7e7890;
+	--purple: #5926c9;
+	--purple-dark: #321173;
+	--orange: #ff7a18;
+	--surface: #ffffff;
+	--background: #f7f5fb;
+	--line: #ebe7f3;
+}
+
+/* Reset mínimo, igual ao das outras páginas do comerciante. */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body { max-width: 100%; overflow-x: hidden; }
+body {
+	margin: 0;
+	min-width: 320px;
+	width: 100%;
+	min-height:0;
+	background: var(--background);
+	color: var(--ink);
+	font-family: "DM Sans", sans-serif;
+}
+button, input { font: inherit; }
+button { cursor: pointer; }
+img, svg, button { max-width: 100%; }
+
+.app {
+	width: calc(100% - 2px);
+	max-width: none;
+	margin-right: auto;
+	margin-left: auto;
+	min-height:0;
+	padding-bottom: max(94px, calc(82px + env(safe-area-inset-bottom)));
+}
+
+/* ---------------------------------------------------------
+   CABEÇALHO
+	Igual ao de inicio_comerciante.html (logo + notificação), só
+   trocando a saudação/busca pelo título da tela.
+--------------------------------------------------------- */
+.header {
+	width: 100%;
+	max-width: 100%;
+	padding: 28px max(22px, calc((100vw - 1180px) / 2)) 40px;
+	color: #fff;
+	background: linear-gradient(135deg, #6e2bd4, #321173);
+	border-radius: 0 0 34px 34px;
+	box-shadow: 0 18px 35px rgba(50, 17, 115, .17);
+}
+.header-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo-area { display: flex; align-items: center; min-height: 44px; }
+.logo { width: 116px; max-height: 48px; object-fit: contain; filter: brightness(0) invert(1); }
+.notification-button { position: relative; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; width: 42px; height: 42px; color: #fff; background: rgba(255,255,255,.12); }
+.notification-icon { width: 30px; height: 30px; object-fit: contain; display: block; }
+.notification-badge { position: absolute; top: 8px; right: 9px; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); }
+
+.marketing-hero { margin: 34px 0 0; }
+.marketing-hero h1 { margin: 0; font: 700 clamp(24px, 4vw, 32px)/1.2 "Space Grotesk", sans-serif; }
+.marketing-hero p { margin: 8px 0 0; color: #ddd2f3; font-size: 14px; }
+
+/* ---------------------------------------------------------
+   CONTEÚDO E GRADE DE FERRAMENTAS
+   Mesmo padrão visual dos atalhos de "Meu perfil" em
+	tela_comerciante.css (ícone + título + descrição + seta),
+   só que em cards um pouco mais altos.
+--------------------------------------------------------- */
+.content { width: min(1180px, calc(100% - 44px)); margin: 26px auto 0; }
+
+.marketing-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.marketing-card {
+	display: grid;
+	grid-template-columns: 58px 1fr 14px;
+	align-items: center;
+	gap: 12px;
+	min-height: 118px;
+	padding: 14px;
+	border: 1px solid var(--line);
+	border-radius: 16px;
+	text-align: left;
+	background: var(--surface);
+	box-shadow: 0 8px 24px rgba(43, 26, 87, .05);
+}
+.card-icon { display: grid; place-items: center; width: 58px; height: 78px; border-radius: 10px; font-size: 26px; }
+.card-purple .card-icon { color: #6028c8; background: #e9ddff; }
+.card-blue   .card-icon { color: #1c82d9; background: #d9f0ff; }
+.card-green  .card-icon { color: #4c9a2a; background: #ddf3cc; }
+.card-orange .card-icon { color: #ef791e; background: #ffead1; }
+.card-red    .card-icon { color: #e0392b; background: #ffe1de; }
+.card-pink   .card-icon { color: #c62a7a; background: #ffdcee; }
+.marketing-card strong, .marketing-card small { display: block; }
+.marketing-card strong { margin-bottom: 6px; color: var(--ink); font-size: 13px; line-height: 1.25; }
+.marketing-card small { color: var(--muted); font-size: 11px; line-height: 1.35; }
+.marketing-card > b { color: var(--purple); font-size: 22px; font-weight: 400; }
+.campaign-panel { margin-top: 24px; padding: 20px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 8px 24px rgba(43, 26, 87, .05); }
+.campaign-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.campaign-heading p, .campaign-dialog-heading p { margin: 0 0 4px; color: var(--orange); font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+.campaign-heading h2, .campaign-dialog-heading h2 { margin: 0; font: 700 18px "Space Grotesk", sans-serif; }
+.campaign-heading > span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: #fff; background: var(--purple); font-weight: 800; }
+.campaign-list { display: grid; gap: 8px; }
+.campaign-item { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 12px; border: 1px solid var(--line); border-radius: 12px; background: #fcfbff; }
+.campaign-type { color: var(--purple); font-size: 11px; font-weight: 800; white-space: nowrap; }
+.campaign-item strong, .campaign-item small { display: block; }.campaign-item strong { font-size: 13px; }.campaign-item small { margin-top: 3px; color: var(--muted); font-size: 10px; }.campaign-item button, .campaign-dialog-heading button { border: 0; color: var(--muted); background: transparent; font-size: 22px; }
+.campaign-empty { margin: 0; color: var(--muted); font-size: 12px; }
+.campaign-backdrop { position: fixed; z-index: 50; inset: 0; display: grid; place-items: end center; padding: 20px; background: rgba(33, 24, 59, .52); }.campaign-backdrop[hidden] { display: none; }
+.campaign-dialog { width: min(520px, 100%); max-height: calc(100vh - 40px); overflow-y: auto; padding: 24px; border-radius: 20px 20px 14px 14px; background: #fff; box-shadow: 0 20px 60px rgba(33,24,59,.28); }.campaign-dialog-heading { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+#campaignForm label { display: grid; gap: 6px; margin-bottom: 13px; color: var(--ink); font-size: 12px; font-weight: 700; }
+.bulk-products-field { margin-bottom: 13px; }
+.bulk-products-field .field-title { display: block; margin-bottom: 6px; color: var(--ink); font-size: 12px; font-weight: 700; }
+.bulk-products-list { display: grid; gap: 7px; max-height: 190px; overflow-y: auto; padding: 8px; border: 1px solid var(--line); border-radius: 9px; background: #fcfbff; }
+.bulk-product-option { display: flex !important; grid-template-columns: auto 1fr !important; align-items: center; gap: 8px !important; margin: 0 !important; padding: 7px 6px; border-radius: 7px; font-size: 11px !important; font-weight: 600 !important; cursor: pointer; }
+.bulk-product-option:hover { background: #f1ebff; }
+.bulk-product-option input { width: auto !important; min-height: auto !important; accent-color: var(--purple); }
+ #campaignForm input, #campaignForm select { width: 100%; min-height: 40px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: #fff; } #flashFields[hidden], #campaignCategoryField[hidden], #campaignProductField[hidden], #bulkFields[hidden], #campaignScopeField[hidden] { display: none; }.check-field { display: flex !important; grid-template-columns: auto 1fr; align-items: center; gap: 8px; }.check-field input { width: auto !important; min-height: auto !important; accent-color: var(--purple); }.campaign-note { min-height: 18px; margin: 0 0 8px; color: #bb3b42; font-size: 11px; font-weight: 700; }.campaign-save { width: 100%; min-height: 44px; border: 0; border-radius: 10px; color: #fff; background: var(--orange); font-size: 12px; font-weight: 800; }
+
+/* ---------------------------------------------------------
+   BANNER "DICAS PARA VENDER MAIS"
+--------------------------------------------------------- */
+.marketing-banner {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin: 22px 0 24px;
+	padding: 18px;
+	border-radius: 18px;
+	color: #fff;
+	background: linear-gradient(135deg, #6e2bd4, #321173);
+	box-shadow: 0 12px 26px rgba(50, 17, 115, .22);
+}
+.banner-icon { flex: 0 0 46px; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; font-size: 22px; background: rgba(255,255,255,.16); }
+.banner-text { flex: 1; min-width: 0; }
+.banner-text strong { display: block; margin-bottom: 4px; font-size: 14px; }
+.banner-text small { display: block; color: #ddd2f3; font-size: 11px; line-height: 1.35; }
+.banner-button { flex: 0 0 auto; height: 38px; padding: 0 16px; border: 0; border-radius: 10px; color: var(--purple); background: #fff; font-weight: 700; font-size: 12px; white-space: nowrap; }
+
+/* ---------------------------------------------------------
+   TOAST, BOTÃO FLUTUANTE E MENU INFERIOR
+	Idêntico ao usado em tela_comerciante.css e chat.css, para a
+	navegação parecer a mesma em qualquer tela do comerciante.
+--------------------------------------------------------- */
+.toast { position: fixed; left: 50%; bottom: 100px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 10px 16px; border-radius: 20px; background: var(--ink); color: #fff; box-shadow: 0 5px 20px rgba(0,0,0,.2); font-size: 12px; z-index: 40; transition: .2s; }
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+
+
+/* ---------------------------------------------------------
+   RESPONSIVO
+	Mesmos pontos de quebra usados nas outras telas do comerciante.
+--------------------------------------------------------- */
+@media (max-width: 850px) {
+	.marketing-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+	.header { padding: 22px 20px 30px; border-radius: 0 0 24px 24px; }
+	.content { width: calc(100% - 32px); margin-top: 20px; }
+	.marketing-banner { flex-wrap: wrap; }
+	.banner-button { width: 100%; }
+}
+
+
+@media (min-width: 751px) and (max-width: 1100px) {
+	.content { width: calc(100% - 48px); }
+}
+
+@media (min-width: 1101px) {
+	.header-top, .marketing-hero { width: min(1180px, calc(100% - 44px)); margin-right: auto; margin-left: auto; }
+}
+
+
+/* ----------(incio) modificado por Marcos Painel visual de Meus Destaques--------- */
+/* ---------------------------------------------------------
+   MEUS DESTAQUES — PAINEL FLUTUANTE
+--------------------------------------------------------- */
+.highlights-intro { margin: -4px 0 18px; padding: 12px 14px; border: 1px solid #eee7ff; border-radius: 12px; color: #6f6882; background: #faf8ff; font-size: 11px; line-height: 1.45; }
+.highlights-intro strong { color: var(--purple); }
+.highlight-save { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.highlight-save span { font-size: 18px; line-height: 1; }
+.highlight-save:disabled { opacity: .5; cursor: not-allowed; }
+.highlight-preview { margin: 4px 0 14px; }
+.highlight-preview-card { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 10px; border: 1px solid #e7def6; border-radius: 13px; background: #faf8ff; }
+.highlight-preview-card img { width: 92px; height: 92px; border-radius: 10px; object-fit: cover; background: #eee9f8; }
+.highlight-preview-card p { margin: 2px 0 5px; color: var(--purple); font-size: 8px; font-weight: 800; letter-spacing: .08em; }
+.highlight-preview-card strong, .highlight-preview-card small, .highlight-preview-card b { display: block; }
+.highlight-preview-card strong { font-size: 13px; }
+.highlight-preview-card small { margin-top: 4px; color: var(--muted); font-size: 10px; }
+.highlight-preview-card b { margin-top: 9px; color: var(--purple); font-size: 12px; }
+.highlight-preview-empty { padding: 16px; border: 1px dashed #d9d0e7; border-radius: 12px; color: var(--muted); background: #fcfbff; font-size: 10px; line-height: 1.4; text-align: center; }
+#highlightsForm input[type="search"] { width: 100%; min-height: 40px; padding: 0 10px; border: 1px solid var(--line); border-radius: 9px; color: var(--ink); background: #fff; }
+@media (max-width: 420px) { .highlight-preview-card { grid-template-columns: 72px 1fr; } .highlight-preview-card img { width: 72px; height: 72px; } }
+.saved-highlights-heading { display: flex; align-items: center; justify-content: space-between; margin: 22px 0 9px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .09em; }
+.saved-highlights-heading strong { display: grid; place-items: center; width: 25px; height: 25px; border-radius: 50%; color: #fff; background: var(--purple); font-size: 10px; letter-spacing: 0; }
+.saved-highlights { display: grid; gap: 8px; }
+.saved-highlight-item { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: 10px; padding: 8px; border: 1px solid var(--line); border-radius: 12px; background: #fcfbff; }
+.saved-highlight-item img { width: 48px; height: 48px; border-radius: 9px; object-fit: cover; background: #eee9f8; }
+.saved-highlight-item strong, .saved-highlight-item small { display: block; }
+.saved-highlight-item strong { font-size: 12px; }
+.saved-highlight-item small { margin-top: 3px; color: var(--muted); font-size: 10px; }
+.saved-highlight-item button { width: 30px; height: 30px; border: 0; border-radius: 50%; color: #a86b73; background: #fff0f1; font-size: 18px; }
+.saved-highlights-empty { display: grid; place-items: center; padding: 18px; border: 1px dashed #ddd5eb; border-radius: 12px; color: var(--muted); text-align: center; }
+.saved-highlights-empty span { color: var(--purple); font-size: 24px; }
+.saved-highlights-empty p { margin: 5px 0 0; font-size: 11px; }
+
+/* ----------(final) modificado por Marcos Painel visual de Meus Destaques--------- */
+/* ----------(incio) modificado por Marcos Seletor personalizado de produtos com pesquisa e preview--------- */
+/* ---------------------------------------------------------
+   SELETOR PERSONALIZADO — MEUS DESTAQUES
+--------------------------------------------------------- */
+.highlight-picker-label { position: relative; }
+.highlight-picker-button { width: 100%; min-height: 62px; display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 11px; padding: 7px 12px 7px 8px; border: 1px solid var(--line); border-radius: 13px; color: var(--ink); background: #fff; text-align: left; cursor: pointer; transition: border-color .18s, box-shadow .18s, transform .18s; }
+.highlight-picker-button:hover, .highlight-picker-button[aria-expanded="true"] { border-color: #bca6df; box-shadow: 0 6px 18px rgba(78,45,125,.10); }
+.highlight-picker-button[aria-expanded="true"] { transform: translateY(-1px); }
+.highlight-picker-thumb { width: 44px; height: 44px; overflow: hidden; border-radius: 10px; background: #f1edf7; }
+.highlight-picker-thumb img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.highlight-picker-text { min-width: 0; }
+.highlight-picker-text strong, .highlight-picker-text small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.highlight-picker-text strong { font-size: 12px; }
+.highlight-picker-text small { margin-top: 3px; color: var(--muted); font-size: 10px; font-weight: 500; }
+.highlight-picker-arrow { color: var(--purple); font-size: 19px; line-height: 1; transition: transform .18s; }
+.highlight-picker-button[aria-expanded="true"] .highlight-picker-arrow { transform: rotate(180deg); }
+.highlight-picker-panel { position: absolute; z-index: 10; top: calc(100% + 7px); left: 0; right: 0; padding: 10px; border: 1px solid #e7def2; border-radius: 15px; background: #fff; box-shadow: 0 18px 45px rgba(35,23,59,.18); }
+.highlight-picker-panel[hidden] { display: none; }
+.highlight-picker-search { display: flex; align-items: center; gap: 8px; min-height: 40px; margin-bottom: 8px; padding: 0 11px; border: 1px solid var(--line); border-radius: 10px; background: #faf9fc; }
+.highlight-picker-search span { color: var(--purple); font-size: 18px; }
+.highlight-picker-search input { width: 100%; min-height: 36px !important; padding: 0 !important; border: 0 !important; outline: 0; background: transparent !important; font-size: 11px; }
+.highlight-product-list { display: grid; gap: 5px; max-height: 270px; overflow-y: auto; padding-right: 2px; }
+.highlight-product-option { width: 100%; display: grid; grid-template-columns: 43px 1fr auto; align-items: center; gap: 10px; padding: 7px; border: 1px solid transparent; border-radius: 11px; background: #fff; text-align: left; cursor: pointer; }
+.highlight-product-option:hover, .highlight-product-option.selected { border-color: #e4d8f2; background: #faf7ff; }
+.highlight-product-option img { width: 43px; height: 43px; border-radius: 9px; object-fit: cover; background: #eee9f8; }
+.highlight-product-option span { min-width: 0; }
+.highlight-product-option strong, .highlight-product-option small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.highlight-product-option strong { color: var(--ink); font-size: 11px; }
+.highlight-product-option small { margin-top: 3px; color: var(--muted); font-size: 9px; font-weight: 500; }
+.highlight-product-option b { color: var(--purple); font-size: 10px; white-space: nowrap; }
+.highlight-product-empty { display: grid; place-items: center; padding: 22px 12px; color: var(--muted); text-align: center; }
+.highlight-product-empty span { color: var(--purple); font-size: 24px; }
+.highlight-product-empty strong { margin-top: 4px; color: var(--ink); font-size: 11px; }
+.highlight-product-empty small { margin-top: 4px; font-size: 9px; }
+@media (max-width: 520px) { .highlight-picker-panel { position: fixed; top: auto; left: 16px; right: 16px; bottom: 16px; max-height: 70vh; } .highlight-product-list { max-height: 45vh; } }
+/* ----------(final) modificado por Marcos Seletor personalizado de produtos com pesquisa e preview--------- */
+
+
+/* =========================================================
+   POPUP PRÊMIO DE SEGUIDOR
+   ========================================================= */
+
+.premio-popup {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    background: rgba(33, 24, 59, .52);
+    z-index: 100;
+}
+
+.premio-popup[hidden] {
+    display: none;
+}
+
+/* Caixa do popup */
+.premio-popup .popup {
+    position: relative;
+    width: min(450px, calc(100% - 32px));
+    padding: 28px;
+    border-radius: 20px;
+    background: #fff;
+    box-shadow: 0 20px 60px rgba(33, 24, 59, .28);
+    box-sizing: border-box;
+}
+
+/* Título pequeno */
+.premio-popup .popup h2 {
+    margin: 0 0 8px;
+    color: #f28c28 !important;
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+/* Título principal */
+.premio-popup .popup .premio-descricao {
+    margin: 0 0 22px;
+    color: #17112f !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1.3;
+}
+
+/* Labels */
+.premio-popup .popup label {
+    display: block;
+    margin: 14px 0 6px;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Campos */
+.premio-popup .popup input {
+    width: 100%;
+    min-height: 40px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    color: var(--ink);
+    background: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+/* Placeholder */
+.premio-popup .popup input::placeholder {
+    color: var(--muted);
+    opacity: 1;
+    font-weight: 600;
+}
+
+/* Campo selecionado */
+.premio-popup .popup input:focus {
+    outline: none;
+    border-color: var(--purple);
+}
+
+/* Botão */
+.premio-popup #criar {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 22px;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    background: var(--orange);
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.premio-popup #criar:hover {
+    filter: brightness(.95);
+}
+
+/* Botão fechar */
+.fechar-premio {
+    position: absolute;
+    top: 13px;
+    right: 15px;
+    border: none;
+    background: transparent;
+    padding: 0;
+    font-size: 23px;
+    line-height: 1;
+    color: #000;
+    cursor: pointer;
+}
+
+.fechar-premio:hover {
+    color: #000;
+}
+
+/* Mensagem */
+#mensagem {
+    font-family: inherit;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   CAMPANHAS SALVAS - DESIGN COMPACTO
+   ========================================================= */
+
+.campaign-panel {
+    padding: 22px;
+}
+
+.campaign-heading h2 {
+    margin: 4px 0 0;
+    font-size: 18px;
+}
+
+.campaign-heading p {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+/* Lista */
+.campaign-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+/* Cada campanha */
+.campaign-list .campanha {
+    padding: 15px 18px;
+    border: 1px solid #eee8f5;
+    border-radius: 12px;
+    background: #faf9fc;
+}
+
+/* Nome do prêmio */
+.campaign-list .campanha h3 {
+    margin: 0 0 9px;
+    color: #17112f;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* Informações */
+.campaign-list .campanha p {
+    margin: 5px 0;
+    color: #625b75;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* Campanha ativa */
+.campaign-list .campanha p:last-child {
+    margin-top: 9px;
+    color: #5425a8;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   CARTÕES DE FIDELIDADE - POPUP DEDICADO
+   --------------------------------------------------------- */
+.ver-cartoes-btn {
+    width: 100%;
+    min-height: 44px;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    background: var(--orange);
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .15s;
+}
+
+.ver-cartoes-btn:hover {
+    filter: brightness(.95);
+}
+
+.cartoes-lista {
+    display: grid;
+    gap: 12px;
+    max-height: 52vh;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.cartao-fidelidade-item {
+    position: relative;
+    padding: 15px 44px 15px 18px;
+    border: 1px solid #eee8f5;
+    border-radius: 12px;
+    background: #faf9fc;
+}
+
+.cartao-fidelidade-item h3 {
+    margin: 0 0 9px;
+    color: #17112f;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.cartao-fidelidade-item p {
+    margin: 5px 0;
+    color: #625b75;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.excluir-cartao {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: #e0392b;
+    font-size: 18px;
+    line-height: 26px;
+    font-weight: 700;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: .15s;
+}
+
+.excluir-cartao:hover {
+    background: #bb2b20;
+    transform: scale(1.05);
+}
+
+/* ALTERAÇÃO FEITA POR DAVI J: ESTILIZAÇÃO DOS CAMPOS DE CUPOM */
+#couponFields {
+    margin-bottom: 4px;
+}
+
+#couponFields[hidden],
+#couponValidity[hidden] {
+    display: none;
+}
+
+.coupon-code-helper {
+    margin: -7px 0 13px;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+#couponCode {
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: .08em;
+}
+
+/* ALTERAÇÃO FEITA POR DAVI J: ESTILIZAÇÃO DA VALIDADE DO CUPOM */
+#couponValidity {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+}
+
+#couponValidity label:last-child {
+    grid-column: 1 / -1;
+}
+
+/* ALTERAÇÃO FEITA POR DAVI J: APARÊNCIA DOS CUPONS NA LISTA */
+.coupon-item {
+    background: linear-gradient(135deg, #fff, #fbf8ff);
+}
+
+.coupon-type {
+    color: #4c9a2a;
+}
+
+.campaign-main {
+    min-width: 0;
+}
+
+.coupon-code-display {
+    display: inline-block;
+    margin: 5px 0 3px;
+    padding: 5px 9px;
+    border: 1px dashed #cbb9ed;
+    border-radius: 7px;
+    color: var(--purple);
+    background: #f4efff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .08em;
+}
+
+/* ALTERAÇÃO FEITA POR DAVI J: RESPONSIVIDADE DOS CUPONS */
+@media (max-width: 520px) {
+
+    #couponValidity {
+        grid-template-columns: 1fr;
+    }
+
+    #couponValidity label:last-child {
+        grid-column: auto;
+    }
+
+    .campaign-item {
+        grid-template-columns: auto 1fr auto;
+    }
+}
+
+/* Cartão fidelidade — regras de pontuação */
+.premio-popup .popup select {
+    width: 100%;
+    min-height: 40px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    color: var(--ink);
+    background: #fff;
+    font-family: inherit;
+    font-size: 12px;
+}
+.premio-popup .popup select:focus { outline: none; border-color: var(--purple); }
+.fidelidade-help { display:block; margin-top:5px; color:var(--muted); font-size:10px; line-height:1.35; }
+.fidelidade-products-list {
+    display:grid;
+    gap:7px;
+    max-height:170px;
+    overflow:auto;
+    padding:8px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:#faf9fc;
+}
+.fidelidade-products-list label {
+    display:grid !important;
+    grid-template-columns:auto 1fr;
+    gap:6px 8px;
+    align-items:center;
+    margin:0 !important;
+    padding:8px;
+    border-radius:8px;
+    background:#fff;
+    cursor:pointer;
+}
+.fidelidade-products-list label input { width:auto !important; min-height:auto !important; }
+.fidelidade-products-list label span { font-size:11px; font-weight:700; }
+.fidelidade-products-list label small { grid-column:2; margin-top:-5px; color:var(--muted); font-size:9px; }

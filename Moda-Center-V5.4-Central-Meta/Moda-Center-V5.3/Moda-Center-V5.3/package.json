@@ -1,0 +1,20 @@
+{
+  "name": "moda-center",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catalogo e area comercial do Moda Center",
+  "scripts": {
+    "start": "node server.js",
+    "db:check": "node -e \"require('./database').testConnection().then(() => process.exit(0)).catch(() => process.exit(1))\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.4.7",
+    "express": "^5.2.1",
+    "mysql2": "^3.14.3",
+    "ffmpeg-static": "^5.2.0"
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - Moda Center</title>
+    <link rel="stylesheet" href="../css/pedidos_comerciante.css">
+    <link rel="stylesheet" href="../../CSS-GLOBAL/navigation.css">
+    <link rel="stylesheet" href="../../CSS-GLOBAL/assistant.css">
+</head>
+
+<body>
+    <main class="orders-app">
+        <header class="orders-header">
+            <a class="back-button" href="inicio_comerciante.html" aria-label="Voltar">‹</a>
+            <div>
+                <p>GESTÃO DA LOJA</p>
+                <h1>Pedidos</h1>
+            </div>
+            <span></span>
+        </header>
+        <section class="orders-content">
+            <p id="ordersNote" class="orders-note" role="status"></p>
+            <div id="ordersList" class="orders-list"></div>
+        </section>
+        <div id="orderDetailsModal" class="order-details-modal" hidden>
+            <section class="order-details-dialog" role="dialog" aria-modal="true" aria-labelledby="orderDetailsTitle">
+                <button id="closeOrderDetails" class="modal-close" type="button"
+                    aria-label="Fechar detalhes">&times;</button>
+                <div id="orderDetailsContent"></div>
+                <div class="order-note-actions"><button id="downloadStoreReceipt" type="button">Baixar nota de
+                        separação</button><button id="printStoreReceipt" type="button">Imprimir / Salvar PDF</button>
+                </div>
+            </section>
+        </div>
+        <nav class="bottom-navigation" aria-label="Navegação do comerciante">
+
+            <a class="nav-item" href="inicio_comerciante.html">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Início</span>
+            </a>
+
+            <a class="nav-item" href="chat_comerciante.html">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">Chat</span>
+            </a>
+
+            <div class="navigation-space"></div>
+
+            <a class="nav-item" href="marketing_comerciante.html">
+                <span class="nav-icon">📣</span>
+                <span class="nav-label">Marketing</span>
+            </a>
+
+            <a class="nav-item" href="perfil_comerciante.html">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Perfil</span>
+            </a>
+
+        </nav>
+    </main>
+    <script src="../js/comerciante-guard.js"></script>
+    <script src="../../JAVASCRIPT-GLOBAL/nota-pedido.js"></script>
+    <script src="../js/pedidos_comerciante.js"></script>
+    <script src="../../JAVASCRIPT-GLOBAL/chat-badge.js"></script>
+    <script src="../../JAVASCRIPT-GLOBAL/assistant.js"></script>
+</body>
+
+</html>

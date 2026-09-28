@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moda Center Live e Vídeo</title>
+    <link rel="stylesheet" href="../css/modacenterliveandvideo.css">
+</head>
+<body>
+    <header class="topo">
+        <div class="topo-conteudo">
+            <button class="botao-voltar" onclick="voltar()" aria-label="Voltar">←</button>
+            <div class="icone-camera">▶</div>
+            <div class="titulo-topo">
+                <h1>Moda Center Live e Vídeo</h1>
+                <p>Crie conteúdos para divulgar seus produtos e aumentar suas vendas.</p>
+            </div>
+            <button class="botao-dicas" id="botaoDicas" onclick="mostrarDicas()">ⓘ &nbsp; Dicas de conteúdo</button>
+        </div>
+    </header>
+
+    <!-- TELA 1: ESCOLHA -->
+    <main id="telaEscolha" class="seletor-wrap tela ativa">
+        <section class="seletor-intro">
+            <span class="tag">CENTRAL DE CONTEÚDO</span>
+            <h2>O que você quer criar hoje?</h2>
+            <p>Escolha o formato ideal para apresentar seus produtos aos clientes.</p>
+        </section>
+
+        <!-- ================================================================
+             BOTÕES DE ACESSO RÁPIDO: "Ver Minhas Lives" / "Ver Meus Vídeos"
+             Ficam ACIMA dos cards de escolha, como solicitado.
+             Cada botão é um bloco semântico, com classes BEM.
+             ================================================================ -->
+        <section class="botoes-acesso-rapido">
+            <button
+                type="button"
+                class="botao-acesso botao-acesso--roxo"
+                onclick="abrirMinhasLives()">
+                <div class="botao-acesso-icone">🎥</div>
+                <div class="botao-acesso-texto">
+                    <strong>Ver Minhas Lives</strong>
+                    <small>Confira todas as transmissões criadas</small>
+                </div>
+                <div class="botao-acesso-seta">→</div>
+            </button>
+
+            <button
+                type="button"
+                class="botao-acesso botao-acesso--laranja"
+                onclick="abrirMeusVideos()">
+                <div class="botao-acesso-icone">🎬</div>
+                <div class="botao-acesso-texto">
+                    <strong>Ver Meus Vídeos</strong>
+                    <small>Visualize todos os vídeos publicados</small>
+                </div>
+                <div class="botao-acesso-seta">→</div>
+            </button>
+        </section>
+
+        <!-- ================================================================
+             GRID DE 2 CARDS GRANDES: LIVE (esquerda) + VÍDEO (direita)
+             Cada card tem 4 DIVs principais (as 8 circuladas no total):
+               - 2 DIVs grandes (imagem/splash)  →  id: liveHeroImage / videoHeroImage
+               - 2 DIVs pequenas (ícone do título)  →  id: liveIconBadge / videoIconBadge
+             Todas recebem classe SEMÂNTICA, ID ÚNICO e CONTEÚDO VISUAL
+             (SVG inline e emojis) para não ficarem vazias.
+             ================================================================ -->
+        <section class="cards-tipo">
+
+            <!-- ============================================================
+                 CARD 1 — CRIAÇÃO DE LIVE
+                 ============================================================ -->
+            <button
+                id="cardLiveButton"
+                class="card-tipo card-live"
+                type="button"
+                onclick="selecionarTipo('live')">
+
+                <!-- 🔵 DIV 1 — Imagem de topo GRANDE do card LIVE (cor roxa)
+                     id: liveHeroImage | classe: live-hero-image
+                     SVG 100% CENTRALIZADO: câmera profissional com badge LIVE + texto.
+                     Viewbox 400x240 (proporção 5:3, mantém aspect ratio perfeito). -->
+                <div
+                    id="liveHeroImage"
+                    class="card-ilustracao card-ilustracao-limpa live-hero-image"
+                    aria-hidden="true">
+                    <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"
+                         preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <!-- Glow suave atrás da câmera (efeito "holofote de live") -->
+                            <radialGradient id="liveGlow" cx="50%" cy="48%" r="42%">
+                                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.22"/>
+                                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                            </radialGradient>
+                            <!-- Sombra projetada no texto LIVE (evita contraste ruim) -->
+                            <filter id="liveTextShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1a0a3e" flood-opacity="0.55"/>
+                            </filter>
+                        </defs>
+
+                        <!-- Glow de fundo no centro -->
+                        <rect x="0" y="0" width="400" height="240" fill="url(#liveGlow)"/>
+
+                        <!-- GRUPO CENTRALIZADO: câmera + badge LIVE + texto LIVE
+                             Todos os elementos vivem dentro deste <g> para o
+                             preserveAspectRatio="xMidYMid" centralizar TUDO.
+
+                             === LAYOUT VERTICAL (alinhado com o card VÍDEO ao lado) ===
+                             • CÂMERA          →  y = -32  (ícone principal)
+                             • BADGE 🔴 LIVE   →  y = +16  (1ª linha informativa)
+                             • TEXTO           →  y = +50  (2ª linha informativa)
+                             ================================================================= -->
+                        <g transform="translate(200, 115)">
+
+                            <!-- 1) CÂMERA centralizada (elemento principal) -->
+                            <g transform="translate(0, -32)">
+                                <!-- Corpo principal da câmera -->
+                                <rect x="-52" y="-24" width="94" height="48" rx="10"
+                                      fill="#ffffff" opacity="0.96"/>
+                                <!-- Lente -->
+                                <circle cx="-6" cy="0" r="14" fill="#32106f"/>
+                                <circle cx="-6" cy="0" r="9" fill="#6525d5"/>
+                                <circle cx="-6" cy="0" r="4" fill="#ffffff"/>
+                                <!-- Flash/visor em cima -->
+                                <rect x="-44" y="-36" width="20" height="8" rx="3"
+                                      fill="#ffffff" opacity="0.7"/>
+                                <!-- Triângulo da viewfinder (parte que "aponta" pro público) -->
+                                <polygon points="42,-14 72,-30 72,10 42,-4" fill="#ffffff" opacity="0.96"/>
+                            </g>
+
+                            <!-- 2) BADGE "🔴 LIVE" CENTRALIZADO embaixo da câmera
+                                 O <g> está com translateX = 0 (CENTRO).
+                                 O rect do badge começa em x=-26 para centralizar (width 52 / 2). -->
+                           <!-- 2) BADGE "🔴 LIVE" CENTRALIZADO -->
+                            <g transform="translate(0, 16)" filter="url(#liveTextShadow)">
+                                <!-- Badge vermelho -->
+                                <rect x="-26" y="-11" width="52" height="22" rx="11" fill="#ff2d55"/>
+
+                                <!-- Bolinha pulsante -->
+                                <circle cx="-16" cy="0" r="3.5" fill="#ffffff">
+                                    <animate attributeName="opacity" values="1;0.45;1" dur="1.4s" repeatCount="indefinite"/>
+                                </circle>
+
+                                <!-- Texto LIVE (mude o 'x' para controlar o espaço) -->
+                                <text x="6" y="4" text-anchor="middle"
+                                    font-family="'Space Grotesk', 'Inter', sans-serif"
+                                    font-size="10.5" font-weight="800"
+                                    letter-spacing="1.2"
+                                    fill="#ffffff">LIVE</text>
+                            </g>
+
+                            <!-- 3) TEXTO "Transmissão ao vivo" CENTRALIZADO (linha de baixo) -->
+                            <g transform="translate(0, 50)">
+                                <text x="0" y="0" text-anchor="middle"
+                                      font-family="'Space Grotesk', 'Inter', sans-serif"
+                                      font-size="14" font-weight="700"
+                                      fill="#ffffff"
+                                      opacity="0.92"
+                                      filter="url(#liveTextShadow)">
+                                    Transmissão ao vivo
+                                </text>
+                            </g>
+
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="card-texto">
+
+                    <!-- 🟣 DIV 2 — Ícone quadrado PEQUENO ao lado do título "Criar uma Live"
+                         id: liveIconBadge | classe: live-icon-badge
+                         Emoji 🎥 + fundo roxo (mesmo estilo antigo card-icon roxo) -->
+                    <div
+                        id="liveIconBadge"
+                        class="card-icon roxo live-icon-badge"
+                        aria-hidden="true">
+                        🎥
+                    </div>
+
+                    <div>
+                        <h3>Criar uma Live</h3>
+                        <p>Faça uma transmissão ao vivo, converse com clientes e apresente produtos em tempo real.</p>
+                        <div class="card-cta card-cta--roxo">Começar live <b>→</b></div>
+                    </div>
+                </div>
+            </button>
+
+            <!-- ============================================================
+                 CARD 2 — CRIAÇÃO DE VÍDEO
+                 ============================================================ -->
+            <button
+                id="cardVideoButton"
+                class="card-tipo card-video"
+                type="button"
+                onclick="selecionarTipo('video')">
+
+                <!-- 🟠 DIV 3 — Imagem de topo GRANDE do card VÍDEO (cor rosa)
+                     id: videoHeroImage | classe: video-hero-image
+                     SVG 100% CENTRALIZADO: celular vertical profissional + play + timeline.
+                     Viewbox 400x240 (mesma proporção do card LIVE, mantém alinhamento visual). -->
+                <div
+                    id="videoHeroImage"
+                    class="card-ilustracao video-ilustracao card-ilustracao-limpa video-hero-image"
+                    aria-hidden="true">
+                    <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg"
+                         preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <!-- Glow suave atrás do celular (destaque profissional) -->
+                            <radialGradient id="videoGlow" cx="50%" cy="45%" r="48%">
+                                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45"/>
+                                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                            </radialGradient>
+                            <!-- Sombra projetada no celular (profundidade) -->
+                            <filter id="videoPhoneShadow" x="-10%" y="-10%" width="120%" height="130%">
+                                <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#c45420" flood-opacity="0.22"/>
+                            </filter>
+                            <!-- Sombra do botão de play -->
+                            <filter id="playBtnShadow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#c94a1b" flood-opacity="0.35"/>
+                            </filter>
+                        </defs>
+
+                        <!-- Glow de fundo -->
+                        <rect x="0" y="0" width="400" height="240" fill="url(#videoGlow)"/>
+
+                        <!-- GRUPO CENTRALIZADO: celular + play + timeline + texto
+                             Mantém alinhamento 1:1 com o card LIVE ao lado.
+
+                             === LAYOUT VERTICAL (IGUAL ao card LIVE) ===
+                             • CELULAR         →  y = -32  (ícone principal, MESMO Y da câmera LIVE)
+                             • TEXTO linha 1   →  y = +16  (MESMO Y do badge LIVE)
+                             • TEXTO linha 2   →  y = +38  (acima do texto final LIVE)
+                             ============================================================ -->
+                            <!-- GRUPO PRINCIPAL: Movido de Y=105 para Y=118 para descer o bloco inteiro -->
+                            <g transform="translate(200, 145)">
+
+                                <!-- Gradiente de tela -->
+                                <defs>
+                                    <linearGradient id="videoScreenGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="#ffd6c9"/>
+                                        <stop offset="60%" stop-color="#ffb499"/>
+                                        <stop offset="100%" stop-color="#ff946a"/>
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- 1) CELULAR: Aumentado de scale(0.78) para scale(0.92) para equivaler ao tamanho da câmera -->
+                                <g transform="translate(0, -42) scale(0.92)" filter="url(#videoPhoneShadow)">
+                                    <rect x="-44" y="-86" width="88" height="164" rx="18" fill="#ffffff" opacity="0.32"/>
+                                    <rect x="-16" y="-80" width="32" height="7" rx="3.5" fill="#ffffff" opacity="0.6"/>
+                                    <rect x="-38" y="-74" width="76" height="142" rx="12" fill="#ffffff" opacity="0.5"/>
+                                    <rect x="-35" y="-71" width="70" height="114" rx="9" fill="url(#videoScreenGrad)" opacity="0.85"/>
+                                    <rect x="-35" y="54" width="44" height="4" rx="2" fill="#ffffff"/>
+                                    <rect x="11" y="54" width="24" height="4" rx="2" fill="#ffffff" opacity="0.5"/>
+                                    <circle cx="9" cy="56" r="5" fill="#ffffff" stroke="#ff7a18" stroke-width="2"/>
+                                </g>
+
+                                <!-- 2) BOTÃO DE PLAY: Aumentado para r=22 para acompanhar a escala do celular -->
+                                <g transform="translate(0, -42)" filter="url(#playBtnShadow)">
+                                    <circle cx="0" cy="0" r="22" fill="#ffffff"/>
+                                    <polygon points="-7,-11 10,0 -7,11" fill="#ff7a18" transform="translate(2, 0)"/>
+                                </g>
+
+                                <!-- 3) TEXTOS: Posicionados proporcionalmente abaixo do celular maior -->
+                                <g transform="translate(0, 42)">
+                                    <text x="0" y="5" text-anchor="middle"
+                                        font-family="'Space Grotesk', 'Inter', sans-serif"
+                                        font-size="13" font-weight="700"
+                                        fill="#a34116" opacity="0.96">
+                                        Formato vertical
+                                    </text>
+                                </g>
+                                <g transform="translate(0, 60)">
+                                    <text x="0" y="5" text-anchor="middle"
+                                        font-family="'Space Grotesk', 'Inter', sans-serif"
+                                        font-size="11" font-weight="500"
+                                        fill="#c55526" opacity="0.88">
+                                        9:16 · shorts / reels
+                                    </text>
+                                </g>
+
+                            </g>
+                    </svg>
+                </div>
+
+                <div class="card-texto">
+
+                    <!-- 🟧 DIV 4 — Ícone quadrado PEQUENO ao lado do título "Criar um Vídeo"
+                         id: videoIconBadge | classe: video-icon-badge
+                         Emoji 🎬 + fundo rosa/laranja (mesmo estilo card-icon laranja) -->
+                    <div
+                        id="videoIconBadge"
+                        class="card-icon laranja video-icon-badge"
+                        aria-hidden="true">
+                        🎬
+                    </div>
+
+                    <div>
+                        <h3>Criar um Vídeo</h3>
+                        <p>Publique vídeos curtos de produtos em um formato vertical, inspirado em marketplaces.</p>
+                        <div class="card-cta card-cta--laranja">Criar vídeo <b>→</b></div>
+                    </div>
+                </div>
+            </button>
+        </section>
+
+        <section class="ajuda-escolha">
+            <strong>💡 Qual formato escolher?</strong>
+            <p><b>Live:</b> melhor para lançamentos, promoções e interação. <b>Vídeo:</b> melhor para demonstrações rápidas que continuam disponíveis depois.</p>
+        </section>
+    </main>
+
+    <!-- TELA 2: LIVE -->
+<div id="telaLive" class="tela">
+
+
+    <!-- =====================================================
+         ETAPAS
+    ====================================================== -->
+
+    <div class="etapas-live">
+
+        <!-- ETAPA 1 -->
+        <button
+            type="button"
+            id="etapaLive1"
+            class="etapa-live ativa"
+            onclick="irParaEtapaLive(1)">
+
+            <span class="numero-etapa">1</span>
+
+            <div>
+                <strong>Informações</strong>
+                <small>Nome, descrição e detalhes</small>
+            </div>
+
+        </button>
+
+
+        <div class="linha-etapa"></div>
+
+
+        <!-- ETAPA 2 -->
+        <button
+            type="button"
+            id="etapaLive2"
+            class="etapa-live"
+            onclick="irParaEtapaLive(2)">
+
+            <span class="numero-etapa">2</span>
+
+            <div>
+                <strong>Produtos</strong>
+                <small>Selecione os produtos</small>
+            </div>
+
+        </button>
+
+
+        <div class="linha-etapa"></div>
+
+
+        <!-- ETAPA 3 -->
+        <button
+            type="button"
+            id="etapaLive3"
+            class="etapa-live"
+            onclick="irParaEtapaLive(3)">
+
+            <span class="numero-etapa">3</span>
+
+            <div>
+                <strong>Configurações</strong>
+                <small>Ajuste a transmissão</small>
+            </div>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         ETAPA 1 — INFORMAÇÕES
+    ====================================================== -->
+
+    <section
+        id="liveEtapa1"
+        class="conteudo-etapa-live ativa">
+
+        <div class="live-editor">
+
+            <div class="cabecalho-etapa-live">
+
+                <span class="passo-live">
+                    PASSO 1 DE 3
+                </span>
+
+                <h2>Informações da sua live</h2>
+
+                <p>
+                    Preencha as informações que seus clientes verão durante a transmissão.
+                </p>
+
+            </div>
+
+
+            <!-- TÍTULO -->
+
+            <div class="campo-live">
+
+                <label for="tituloLive">
+                    Título da live*
+
+                    <span>
+                        <i id="contadorTituloLive">0</i>/60
+                    </span>
+                </label>
+
+                <input
+                    type="text"
+                    id="tituloLive"
+                    maxlength="60"
+                    placeholder="Ex.: Novidades da nossa loja ao vivo">
+
+            </div>
+
+
+            <!-- DESCRIÇÃO -->
+
+            <div class="campo-live">
+
+                <label for="descricaoLive">
+                    Descrição da live*
+
+                    <span>
+                        <i id="contadorDescricaoLive">0</i>/500
+                    </span>
+                </label>
+
+                <textarea
+                    id="descricaoLive"
+                    maxlength="500"
+                    placeholder="Conte aos clientes o que você irá apresentar durante a live..."></textarea>
+
+            </div>
+
+
+            <!-- CAPA -->
+
+            <div class="campo-live">
+
+                <label>
+                    Capa da live
+                    <small>(opcional)</small>
+                </label>
+
+                <label
+                    class="upload-capa-live"
+                    for="capaLive">
+
+                    <input
+                        type="file"
+                        id="capaLive"
+                        accept="image/png,image/jpeg,image/webp"
+                        onchange="carregarCapaLive(event)">
+
+                    <div class="capa-upload-icon">
+                        ☁
+                    </div>
+
+                    <div class="capa-upload-text">
+
+                        <strong>
+                            Clique para enviar uma imagem
+                        </strong>
+
+                        <span>
+                            PNG, JPG ou WEBP • Recomendado: 1280×720
+                        </span>
+
+                    </div>
+
+                    <img
+                        id="previewCapaLive"
+                        class="preview-capa-live"
+                        alt="Prévia da capa">
+
+                </label>
+
+            </div>
+
+
+            <!-- NAVEGAÇÃO -->
+
+            <div class="acoes-etapa-live">
+
+                <span></span>
+
+                <button
+                    type="button"
+                    class="btn-proximo-live"
+                    onclick="irParaEtapaLive(2)">
+
+                    Próximo passo →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRÉVIA -->
+
+        <aside class="live-preview">
+
+            <div class="preview-titulo-live">
+
+                <div>
+                    <strong>Sua live em destaque</strong>
+                    <div class="titulo-sub">Veja como será exibida</div>
+                </div>
+
+                <!-- Badge AO VIVO do PREVIEW LATERAL (classe ESPECÍFICA para não
+                     ser apagado pela função limparBadgesHeaderAoVivo() que remove
+                     elementos .badge-live do header. Nunca usar .badge-live aqui.) -->
+                <div class="preview-badge-live">
+                    🔴 AO VIVO
+                </div>
+
+            </div>
+
+
+            <div class="preview-card-live">
+
+                <img
+                    id="previewImagemLive"
+                    src=""
+                    alt="Capa da live">
+
+                <div class="preview-overlay-live">
+
+                    <strong id="previewTituloLive">
+                        Sua live aparecerá aqui
+                    </strong>
+
+                    <p id="previewDescricaoLive">
+                        Adicione título e descrição para visualizar.
+                    </p>
+
+                    <button type="button">
+                        ▣ Assistir agora
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="dica-live">
+
+                <strong>💡 Dica para uma live de sucesso</strong>
+
+                <p>
+                    Escolha um ambiente bem iluminado e mostre seus produtos
+                    nos primeiros minutos.
+                </p>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ETAPA 2 — PRODUTOS
+    ====================================================== -->
+
+    <section
+        id="liveEtapa2"
+        class="conteudo-etapa-live">
+
+        <div class="live-editor">
+
+            <div class="cabecalho-etapa-live">
+
+                <span class="passo-live">
+                    PASSO 2 DE 3
+                </span>
+
+                <h2>Produtos da sua live</h2>
+
+                <p>
+                    Selecione os produtos cadastrados na sua loja
+                    que serão apresentados durante a transmissão.
+                </p>
+
+            </div>
+
+
+            <!-- PRODUTOS -->
+
+            <div class="produtos-live-box">
+
+                <div class="titulo-produtos-live">
+
+                    <div>
+                        <strong>
+                            Produtos da sua loja
+                        </strong>
+
+                        <span>
+                            Selecione um ou mais produtos.
+                        </span>
+                    </div>
+
+                    <span id="contadorProdutosLive">
+                        0 selecionados
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="listaProdutosLive"
+                    class="lista-produtos-live">
+
+                    <div class="produtos-carregando">
+                        Carregando seus produtos...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NAVEGAÇÃO -->
+
+            <div class="acoes-etapa-live">
+
+                <button
+                    type="button"
+                    class="btn-proximo-live"
+                    onclick="irParaEtapaLive(3)">
+
+                    Configurações →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESUMO -->
+
+        <aside class="live-preview">
+
+            <div class="resumo-live">
+
+                <strong>
+                    🛍 Produtos selecionados
+                </strong>
+
+                <p>
+                    Os produtos selecionados aparecerão
+                    vinculados à sua live.
+                </p>
+
+                <div id="resumoProdutosLive">
+
+                    <div class="resumo-vazio">
+                        Nenhum produto selecionado.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ETAPA 3 — CONFIGURAÇÕES
+    ====================================================== -->
+
+    <section
+        id="liveEtapa3"
+        class="conteudo-etapa-live">
+
+        <div class="live-editor">
+
+            <div class="cabecalho-etapa-live">
+
+                <span class="passo-live">
+                    PASSO 3 DE 3
+                </span>
+
+                <h2>Configurações da transmissão</h2>
+
+                <p>
+                    Defina quando e como sua live será transmitida.
+                </p>
+
+            </div>
+
+
+            <!-- COMO INICIAR -->
+
+            <div class="campo-live">
+                <label>Como você quer começar?</label>
+                <div class="modo-inicio-live" style="display:grid;gap:10px;grid-template-columns:1fr 1fr;">
+                    <label style="display:flex;gap:8px;align-items:flex-start;padding:12px;border:1px solid #ddd;border-radius:12px;cursor:pointer;">
+                        <input type="radio" name="modoInicioLive" value="agora" checked onchange="atualizarModoInicioLive()">
+                        <span><strong>🔴 Iniciar agora</strong><br><small>Abre a câmera e vai ao vivo na hora.</small></span>
+                    </label>
+                    <label style="display:flex;gap:8px;align-items:flex-start;padding:12px;border:1px solid #ddd;border-radius:12px;cursor:pointer;">
+                        <input type="radio" name="modoInicioLive" value="agendar" onchange="atualizarModoInicioLive()">
+                        <span><strong>📅 Agendar</strong><br><small>Escolha data e horário.</small></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- DATA E HORA (só aparece ao agendar) -->
+
+            <div class="duas-colunas-live" id="blocoAgendamentoLive" style="display:none;">
+
+                <div class="campo-live">
+
+                    <label for="dataLive">
+                        Data da live*
+                    </label>
+
+                    <input
+                        type="date"
+                        id="dataLive">
+
+                </div>
+
+
+                <div class="campo-live">
+
+                    <label for="horaLive">
+                        Horário da live*
+                    </label>
+
+                    <input
+                        type="time"
+                        id="horaLive">
+
+                </div>
+
+            </div>
+
+
+            <!-- VISIBILIDADE (campo de CATEGORIA REMOVIDO por não ser necessário) -->
+
+            <div class="duas-colunas-live">
+
+                <div class="campo-live">
+
+                    <label for="visibilidadeLive">
+                        Visibilidade
+                    </label>
+
+                    <select id="visibilidadeLive">
+
+                        <option value="Público">
+                            Público
+                        </option>
+
+                        <option value="Privado">
+                            Privado
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESUMO FINAL -->
+
+            <div class="resumo-final-live">
+
+                <div class="resumo-final-titulo">
+                    <span>✓</span>
+
+                    <div>
+                        <strong>
+                            Tudo pronto para criar sua live
+                        </strong>
+
+                        <small>
+                            Confira as informações antes de publicar.
+                        </small>
+                    </div>
+                </div>
+
+
+                <div class="resumo-final-grid">
+
+                    <div>
+                        <small>Título</small>
+                        <strong id="resumoTituloLive">
+                            —
+                        </strong>
+                    </div>
+
+                    <div>
+                        <small>Produtos</small>
+                        <strong id="resumoQuantidadeLive">
+                            0 produtos
+                        </strong>
+                    </div>
+
+                    <div>
+                        <small>Data e horário</small>
+                        <strong id="resumoDataLive">
+                            —
+                        </strong>
+                    </div>
+
+                    <div>
+                        <small>Categoria</small>
+                        <strong id="resumoCategoriaLive">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AÇÕES -->
+
+            <div class="acoes-etapa-live">
+
+                <button
+                    type="button"
+                    class="btn-criar-live"
+                    onclick="criarLive()">
+
+                    🔴 Iniciar live agora
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PREVIEW FINAL -->
+
+        <aside class="live-preview">
+
+            <div class="final-card-live">
+
+                <div class="final-icone-live">
+                    🔴
+                </div>
+
+                <h3>
+                    Sua live está quase pronta!
+                </h3>
+
+                <p>
+                    Depois de criar a live, ela ficará disponível
+                    conforme a data e horário definidos.
+                </p>
+
+                <div class="final-produtos-live">
+
+                    <strong>
+                        🛍 Produtos vinculados
+                    </strong>
+
+                    <span id="finalProdutosLive">
+                        0 produtos
+                    </span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</div>
+
+<!-- TELA 3: VÍDEO -->
+<div id="telaVideo" class="tela">
+
+
+    <main class="video-layout">
+
+        <section class="video-editor">
+
+            <div class="video-cabecalho">
+                <span class="passo">NOVO VÍDEO</span>
+                <h2>Crie seu vídeo de produto</h2>
+                <p>
+                    Envie um vídeo vertical, adicione informações
+                    e vincule produtos da sua loja.
+                </p>
+            </div>
+
+
+            <!-- =====================================
+                 PASSO 1
+            ====================================== -->
+
+            <div class="bloco-video">
+
+                <div class="bloco-titulo">
+                    <span class="numero-bloco">1</span>
+
+                    <div>
+                        <h3>Envie seu vídeo</h3>
+                        <p>
+                            Use um vídeo curto e mostre o produto em destaque.
+                        </p>
+                    </div>
+                </div>
+
+                <label class="upload-video" id="areaUploadVideo">
+
+                    <input
+                        type="file"
+                        id="arquivoVideo"
+                        accept="video/mp4,video/webm,video/quicktime"
+                        onchange="carregarVideo(event)"
+                    >
+
+                    <div class="upload-video-icon">⬆</div>
+
+                    <strong id="textoUploadVideo">
+                        Clique para selecionar um vídeo
+                    </strong>
+
+                    <span>
+                        MP4, MOV ou WEBM • Recomendado 9:16 • até 60 segundos
+                    </span>
+
+                    <button
+                        type="button"
+                        onclick="
+                            document.getElementById('arquivoVideo').click();
+                            event.preventDefault();
+                        "
+                    >
+                        Selecionar vídeo
+                    </button>
+
+                </label>
+
+            </div>
+
+
+            <!-- =====================================
+                 PASSO 2
+            ====================================== -->
+
+            <div class="bloco-video">
+
+                <div class="bloco-titulo">
+                    <span class="numero-bloco">2</span>
+
+                    <div>
+                        <h3>Informações do vídeo</h3>
+                        <p>
+                            Conte aos clientes o que eles estão vendo.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="campo-video">
+
+                    <label for="tituloVideo">
+                        Título*
+
+                        <span>
+                            <i id="contadorTituloVideo">0</i>/80
+                        </span>
+                    </label>
+
+                    <input
+                        id="tituloVideo"
+                        maxlength="80"
+                        placeholder="Ex.: Vestido canelado que veste super bem"
+                    >
+
+                </div>
+
+
+                <div class="campo-video">
+
+                    <label for="descricaoVideo">
+                        Descrição*
+
+                        <span>
+                            <i id="contadorDescricaoVideo">0</i>/300
+                        </span>
+                    </label>
+
+                    <textarea
+                        id="descricaoVideo"
+                        maxlength="300"
+                        placeholder="Descreva o produto, tecido, tamanhos, cores e diferenciais..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="duas-colunas">
+
+                    <div class="campo-video">
+
+                        <label for="visibilidadeVideo">
+                            Visibilidade
+                        </label>
+
+                        <select id="visibilidadeVideo">
+
+                            <option>
+                                Público
+                            </option>
+
+                            <option>
+                                Rascunho
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 PASSO 3 — PRODUTOS
+            ====================================== -->
+
+            <div class="bloco-video">
+
+                <div class="bloco-titulo">
+
+                    <span class="numero-bloco">3</span>
+
+                    <div>
+                        <h3>Produtos (opcional)</h3>
+
+                        <p>
+                            Você não precisa escolher um produto específico. Este campo é opcional.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- BOTÃO PARA ABRIR PRODUTOS -->
+
+                <div class="produto-vinculado">
+
+                    <div class="produto-img">
+                        🛍️
+                    </div>
+
+                    <div class="produto-info">
+
+                        <strong>
+                            Selecione um produto da sua loja
+                        </strong>
+
+                        <span>
+                            O produto aparecerá como opção de compra no vídeo.
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        onclick="abrirProdutos()"
+                    >
+                        + Adicionar produto
+                    </button>
+
+                </div>
+
+
+                <!-- =================================
+                     DROPDOWN / LISTA DE PRODUTOS
+                ================================== -->
+
+                <div
+                    id="listaProdutosVideo"
+                    class="lista-produtos-video oculto"
+                ></div>
+
+
+                <!-- =================================
+                     PRODUTO SELECIONADO
+                ================================== -->
+
+                <div
+                    id="produtoSelecionado"
+                    class="produto-selecionado oculto"
+                ></div>
+
+            </div>
+            <!-- ↑ ESTE </div> ESTAVA FALTANDO -->
+
+
+            <!-- =====================================
+                 PASSO 4 — CAPA
+            ====================================== -->
+
+            <div class="bloco-video">
+
+                <div class="bloco-titulo">
+
+                    <span class="numero-bloco">4</span>
+
+                    <div>
+                        <h3>Capa do vídeo</h3>
+
+                        <p>
+                            Uma boa capa aumenta as chances de clique.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <label class="upload-capa-video">
+
+                    <input
+                        type="file"
+                        id="capaVideo"
+                        accept="image/*"
+                        onchange="carregarCapaVideo(event)"
+                    >
+
+                    <span>＋</span>
+
+                    <div>
+
+                        <strong>
+                            Adicionar capa personalizada
+                        </strong>
+
+                        <small>
+                            JPG ou PNG • Vertical 9:16
+                        </small>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+
+            <!-- =====================================
+                 AÇÕES
+            ====================================== -->
+
+            <div class="acoes-video">
+
+                <button
+                    class="btn-rascunho"
+                    onclick="salvarRascunho()"
+                >
+                    Salvar rascunho
+                </button>
+
+                <button
+                    class="btn-publicar"
+                    onclick="publicarVideo()"
+                >
+                    🎬 Publicar vídeo →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             PRÉVIA DO VÍDEO
+        ========================================== -->
+
+        <aside class="video-preview-area">
+
+            <div class="preview-sticky">
+
+                <div class="preview-label">
+
+                    <div>
+                        <strong>Prévia do vídeo</strong>
+                        <div class="titulo-sub">Como seus clientes verão</div>
+                    </div>
+
+                    <div class="chip-mobile">
+                        📱 Mobile
+                    </div>
+
+                </div>
+
+
+                <div class="celular">
+
+                    <div class="celular-topo">
+                        <span>9:41</span>
+                        <b>● ● ●</b>
+                    </div>
+
+
+                    <div
+                        class="video-player"
+                        id="videoPlayerArea"
+                    >
+
+                        <video
+                            id="previewVideo"
+                            muted
+                            loop
+                            playsinline
+                        ></video>
+
+                        <img
+                            id="previewCapaVideo"
+                            alt="Capa do vídeo"
+                        >
+
+                        <div
+                            id="videoPlaceholder"
+                            class="video-placeholder"
+                        >
+                            <span>▶</span>
+                            <p>
+                                Seu vídeo aparecerá aqui
+                            </p>
+                        </div>
+
+
+                        <div class="feed-overlay">
+
+                            <div class="feed-info">
+
+                                <strong id="previewStoreName">
+                                    @sualoja
+                                </strong>
+
+                                <p id="previewTituloVideo">
+                                    Seu título aparecerá aqui
+                                </p>
+
+                                <small id="previewDescricaoVideo">
+                                    Adicione uma descrição para o seu vídeo.
+                                </small>
+
+                                <button id="produtoFeed">
+                                    🛍 Ver produto
+                                </button>
+
+                            </div>
+
+
+                            <div class="feed-acoes">
+
+                                <span>
+                                    ♡
+                                    <small>1,2k</small>
+                                </span>
+
+                                <span>
+                                    ◯
+                                    <small>48</small>
+                                </span>
+
+                                <span>
+                                    ↗
+                                    <small>Enviar</small>
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="celular-nav">
+
+                        <span>
+                            ⌂
+                            <small>Início</small>
+                        </span>
+
+                        <span>
+                            ▶
+                            <small>Vídeos</small>
+                        </span>
+
+                        <span>
+                            ＋
+                            <small>Criar</small>
+                        </span>
+
+                        <span>
+                            ♡
+                            <small>Favoritos</small>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dica-video">
+
+                    <strong>
+                        💡 Dica para vender mais
+                    </strong>
+
+                    <p>
+                        Mostre o produto nos primeiros segundos
+                        e grave em boa iluminação. Vídeos verticais
+                        ocupam melhor a tela do celular.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+</div>
+
+
+<!-- ================================================================
+     TELA 4: MINHAS LIVES (listagem de todas as lives salvas)
+     Acessível pelo botão "Ver Minhas Lives" na tela de escolha.
+     ================================================================ -->
+<div id="telaMinhasLives" class="tela">
+    <main class="listagem-layout">
+        <section class="listagem-editor">
+            <div class="listagem-cabecalho">
+                <div class="listagem-titulo">
+                    <span class="passo">MINHAS LIVES</span>
+                    <h2>🎥 Transmissões criadas</h2>
+                    <p>Todas as lives que você cadastrou ficam salvas aqui.</p>
+                </div>
+            </div>
+
+            <div id="listaMinhasLives" class="lista-itens-salvos">
+                <div class="itens-carregando">Carregando suas lives...</div>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<!-- ================================================================
+     TELA 5: MEUS VÍDEOS (listagem de todos os vídeos salvos)
+     Acessível pelo botão "Ver Meus Vídeos" na tela de escolha.
+     ================================================================ -->
+<div id="telaMeusVideos" class="tela">
+    <main class="listagem-layout">
+        <section class="listagem-editor">
+            <div class="listagem-cabecalho">
+                <div class="listagem-titulo">
+                    <span class="passo">MEUS VÍDEOS</span>
+                    <h2>🎬 Vídeos publicados</h2>
+                    <p>Todos os vídeos que você criou ficam disponíveis aqui.</p>
+                </div>
+            </div>
+
+            <div id="listaMeusVideos" class="lista-itens-salvos">
+                <div class="itens-carregando">Carregando seus vídeos...</div>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<!-- ==========================================================================
+     ORDEM DOS SCRIPTS É IMPORTANTE!
+     1) comerciante-guard.js  →  define window.comercianteSession (obrigatório)
+     2) modacenterliveandvideo.js  →  usa window.comercianteSession?.id pra buscar
+                                      categorias, loja e produtos do comerciante
+     Sem o guard, TODOS os carregamentos dinâmicos voltam vazio (fallback padrão).
+     ========================================================================== -->
+<script src="../js/comerciante-guard.js"></script>
+<script src="../js/modacenterliveandvideo.js"></script>
+
+</body>
+</html>

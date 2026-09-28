@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Moda Center</title>
+  <link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body>
+  <main class="admin-shell">
+    <header class="topbar">
+      <div>
+        <h1>PAINEL ADMINISTRADOR</h1>
+      </div>
+      <div class="actions">
+        <button id="refreshStores" class="btn secondary" type="button">Atualizar</button>
+        <button id="adminLogout" class="btn primary" type="button">Sair</button>
+      </div>
+    </header>
+
+    <section class="summary">
+      <div class="summary-card">
+        <div class="label">Lojas ativas</div>
+        <div id="storesCount" class="value">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Produtos no sistema</div>
+        <div id="productsCount" class="value">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Pedidos registrados</div>
+        <div id="ordersCount" class="value">0</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Lojas cadastradas</h2>
+      </div>
+      <div id="storesList" class="stores-list"></div>
+    </section>
+  </main>
+
+  <script src="../js/admin.js"></script>
+</body>
+</html>
